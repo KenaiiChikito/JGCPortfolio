@@ -154,6 +154,51 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
   ],
 
   /* ==================================================================================
+     3.B NUEVO MÓDULO: PROYECTO DE PROGRAMACIÓN DESTACADO (SPOTLIGHT)
+     Un desglose profundo de tu mejor desarrollo técnico: benchmarks, arquitectura y código.
+     ================================================================================== */
+  proyectoProgramacionDestacado: {
+    subtituloBadge: "MUNDO 02-B · SPOTLIGHT TÉCNICO",
+    titulo: "DUNGEON SYNAPSE (ROGUE-AI)",
+    subtitulo: "Arquitectura de Juego, Procedural & IA Táctica",
+    descripcion: "Sistema de juego completo que integra generación procedural de niveles determinista mediante Wave Function Collapse, máquinas de estados jerárquicas (HFSM) para IA enemiga y un framework modular de habilidades desacoplado basado en ScriptableObjects y eventos C#.",
+    historiaDesarrollo: "Diseñado con énfasis en modularidad y cero recolección de basura (GC) en el bucle principal, asegurando una tasa fija de 60 FPS estables.",
+    imagen: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=900&auto=format&fit=crop&q=80",
+    video: "",
+    tags: ["Unity", "C#", "Wave Function Collapse", "HFSM IA", "Optimización"],
+    metricasRendimiento: [
+      { label: "Frame Rate", valor: "60+ FPS", detalle: "Estable en PC & Consola" },
+      { label: "GC Alloc / Frame", valor: "0 Bytes", detalle: "Zero Allocation Loop" },
+      { label: "Generación de Mapa", valor: "< 45 ms", detalle: "Seed Determinista 64-bit" },
+      { label: "Entidades Activas", valor: "120+ Agentes", detalle: "Árboles de Comportamiento" },
+    ],
+    caracteristicasTecnicas: [
+      { titulo: "Generador Procedural Determinista", descripcion: "Algoritmo Wave Function Collapse con propagación de restricciones y verificación de conectividad mediante grafos." },
+      { titulo: "Arquitectura Event-Driven Desacoplada", descripcion: "Comportamientos y estados comunicados vía ScriptableObject Events, eliminando acoplamiento rígido." },
+      { titulo: "Pool de Objetos & Reutilización de Memoria", descripcion: "Estructuras pre-asignadas para proyectiles, efectos visuales y enemigos sin sobrecargar la memoria." },
+    ],
+    codigoSnippet: {
+      lenguaje: "C#",
+      archivo: "EnemyTacticalBrain.cs",
+      codigo: `public class TacticalAgent : MonoBehaviour {
+    [SerializeField] private StateMachine _stateMachine;
+    [SerializeField] private SensorModule _sensors;
+
+    private void FixedUpdate() {
+        if (_sensors.HasLineOfSight(Target)) {
+            _stateMachine.TransitionTo<FlankTargetState>();
+        } else {
+            _stateMachine.TransitionTo<PatrolWaypointsState>();
+        }
+    }
+}`
+    },
+    linkDemo: "https://kenaiichikito.itch.io/",
+    linkCodigo: "https://github.com/KenaiiChikito",
+    linkGDD: "https://github.com/KenaiiChikito",
+  },
+
+  /* ==================================================================================
      4. MUNDO 03 — PROYECTOS CREATIVOS / MODELADO 3D (CARRUSEL & RENDERS)
      Aquí configuras la galería interactiva de renders 3D y los accesos a tus perfiles
      en plataformas de arte 3D (ArtStation, Sketchfab, Behance, Gumroad, etc.).
@@ -239,6 +284,36 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
         ]
       }
     ]
+  },
+
+  /* ==================================================================================
+     4.B NUEVO MÓDULO: PROYECTO CREATIVO / MODELADO 3D DESTACADO (HERO ASSET)
+     Exhibición detallada de tu pieza 3D insignia con mallas, topología y Sketchfab 3D.
+     ================================================================================== */
+  proyectoCreativoDestacado: {
+    subtituloBadge: "MUNDO 03-B · HERO ASSET 3D",
+    titulo: "MÁSCARA JAPONESA ESTILIZADA",
+    subtitulo: "Esculpido Orgánico & Hard-Surface en NomadSculpt",
+    descripcion: "Diseño y modelado de máscara tradicional de estilo japonés, pensada como accesorio místico para personajes de acción o fantasía en videojuegos. Combina curvaturas orgánicas fluidas con bordes afilados legibles.",
+    conceptoArtistico: "Inspirada en el folclore asiático con reinterpretación estilizada moderna. Modelada directamente en NomadSculpt, optimizando los bucles de aristas para capturar la luz de manera impactante en motores de tiempo real.",
+    imagenPrincipal: "./Mask.png",
+    imagenSecundaria: "./Lizzard.png",
+    software: ["NomadSculpt", "Blender"],
+    detallesGeometria: [
+      { label: "Triángulos", valor: "278.7K Tris" },
+      { label: "Estilo", valor: "Estilizado" },
+      { label: "Topología", valor: "Game Ready" },
+      { label: "Software", valor: "NomadSculpt" },
+    ],
+    puntosClave: [
+      { titulo: "Silueta de Alto Impacto", descripcion: "Volúmenes y cuernos modelados para máxima legibilidad visual en cámara en tercera persona." },
+      { titulo: "Flujo de Curvas Esculpidas", descripcion: "Transición orgánica sin artefactos de pellizco, lista para texturizado PBR o sombreado Cel-Shaded." },
+      { titulo: "Inspección 3D Interactiva", descripcion: "Malla subida a Sketchfab para inspección de geometría en tiempo real a 360 grados." },
+    ],
+    plataformas: [
+      { nombre: "Sketchfab 3D", url: "https://sketchfab.com/3d-models/mask-f2675005f0c64ecaa8a70f73482f2f59", icono: "sketchfab" },
+      { nombre: "ArtStation", url: "https://www.artstation.com/kenaiichikito", icono: "artstation" },
+    ],
   },
 
   /* ==================================================================================

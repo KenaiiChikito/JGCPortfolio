@@ -54,6 +54,58 @@ export interface HistorialUpdate {
   tipo: 'nuevo' | 'mejora' | 'correccion' | 'hito';
 }
 
+export interface FeaturedProgrammingProject {
+  subtituloBadge?: string;
+  titulo: string;
+  subtitulo: string;
+  descripcion: string;
+  historiaDesarrollo?: string;
+  imagen: string;
+  video?: string;
+  tags: string[];
+  metricasRendimiento: {
+    label: string;
+    valor: string;
+    detalle?: string;
+  }[];
+  caracteristicasTecnicas: {
+    titulo: string;
+    descripcion: string;
+  }[];
+  codigoSnippet?: {
+    lenguaje: string;
+    archivo: string;
+    codigo: string;
+  };
+  linkDemo?: string;
+  linkCodigo?: string;
+  linkGDD?: string;
+}
+
+export interface FeaturedCreativeProject {
+  subtituloBadge?: string;
+  titulo: string;
+  subtitulo: string;
+  descripcion: string;
+  conceptoArtistico?: string;
+  imagenPrincipal: string;
+  imagenSecundaria?: string;
+  software: string[];
+  detallesGeometria: {
+    label: string;
+    valor: string;
+  }[];
+  puntosClave: {
+    titulo: string;
+    descripcion: string;
+  }[];
+  plataformas: {
+    nombre: string;
+    url: string;
+    icono?: string;
+  }[];
+}
+
 export interface PortfolioConfig {
   hero: {
     tagAvailability: string;
@@ -75,6 +127,7 @@ export interface PortfolioConfig {
   bio: string[];
   stats: StatItem[];
   proyectosProgramacion: ProgrammingProject[];
+  proyectoProgramacionDestacado?: FeaturedProgrammingProject;
   modelado3D: {
     descripcionSeccion: string;
     plataformasPrincipales: {
@@ -84,6 +137,7 @@ export interface PortfolioConfig {
     }[];
     renders: Render3DProject[];
   };
+  proyectoCreativoDestacado?: FeaturedCreativeProject;
   inventario: Record<string, SkillItem[]>;
   contacto: {
     intro: string;

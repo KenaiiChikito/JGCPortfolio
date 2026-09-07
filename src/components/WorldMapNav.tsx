@@ -11,7 +11,9 @@ export const WORLD_SECTIONS: WorldSection[] = [
   { id: 'inicio', number: '00', label: 'PRESS START', shortLabel: 'INICIO' },
   { id: 'about', number: '01', label: 'SOBRE MÍ', shortLabel: 'MUNDO 01' },
   { id: 'proyectos', number: '02', label: 'PROGRAMACIÓN', shortLabel: 'MUNDO 02' },
+  { id: 'prog-destacado', number: '02★', label: 'PROG. DESTACADO', shortLabel: 'DESTACADO' },
   { id: 'modelado', number: '03', label: 'MODELADO 3D', shortLabel: 'MUNDO 03' },
+  { id: 'creative-destacado', number: '03★', label: '3D DESTACADO', shortLabel: 'DESTACADO' },
   { id: 'skills', number: '04', label: 'INVENTARIO', shortLabel: 'MUNDO 04' },
   { id: 'contacto', number: '05', label: 'GUARDAR PARTIDA', shortLabel: 'MUNDO 05' },
 ];

@@ -5,11 +5,14 @@ import { WorldMapNav } from './components/WorldMapNav';
 import { HeroSection } from './components/HeroSection';
 import { World01About } from './components/World01About';
 import { World02Projects } from './components/World02Projects';
+import { WorldFeaturedProgramming } from './components/WorldFeaturedProgramming';
 import { World03Creative3D } from './components/World03Creative3D';
+import { WorldFeaturedCreative } from './components/WorldFeaturedCreative';
 import { World04Skills } from './components/World04Skills';
 import { World05SaveGame } from './components/World05SaveGame';
 import { AchievementToast } from './components/AchievementToast';
 import { VideoModal } from './components/VideoModal';
+import { PlatformIcon } from './components/PlatformIcon';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('inicio');
@@ -21,7 +24,9 @@ export default function App() {
   const worldAchievements: Record<string, string> = {
     about: 'Mundo 01: Has descubierto los orígenes del héroe.',
     proyectos: 'Mundo 02: Acceso concedido a los repositorios de código.',
+    'prog-destacado': 'Spotlight Técnico: Has inspeccionado la arquitectura del proyecto de programación destacado.',
     modelado: 'Mundo 03: Has entrado a la forja y galería de modelos 3D.',
+    'creative-destacado': 'Hero Asset 3D: Has explorado la escultura y topología del modelo 3D destacado.',
     skills: 'Mundo 04: Inventario desbloqueado (¡sin GDScript, JS ni Python!).',
     contacto: 'Mundo 05: Punto de guardado alcanzado e historial verificado.',
   };
@@ -29,7 +34,7 @@ export default function App() {
   // Scroll listener to update active section in world map nav
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['inicio', 'about', 'proyectos', 'modelado', 'skills', 'contacto'];
+      const sections = ['inicio', 'about', 'proyectos', 'prog-destacado', 'modelado', 'creative-destacado', 'skills', 'contacto'];
       const scrollPos = window.scrollY + window.innerHeight * 0.35;
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -103,9 +108,20 @@ export default function App() {
           onOpenVideo={(vid) => setActiveVideo(vid)}
         />
 
+        {/* Mundo 02-B: Proyecto de Programación Destacado */}
+        <WorldFeaturedProgramming
+          proyecto={PORTFOLIO_CONFIG.proyectoProgramacionDestacado}
+          onOpenVideo={(vid) => setActiveVideo(vid)}
+        />
+
         {/* Mundo 03: Proyectos Creativos (Modelado 3D con Carrusel/Slider & Plataformas) */}
         <World03Creative3D
           modeladoData={PORTFOLIO_CONFIG.modelado3D}
+        />
+
+        {/* Mundo 03-B: Proyecto Creativo / Modelado Destacado */}
+        <WorldFeaturedCreative
+          proyecto={PORTFOLIO_CONFIG.proyectoCreativoDestacado}
         />
 
         {/* Mundo 04: Inventario de Habilidades (Eliminado GDScript, JavaScript y Python) */}
@@ -123,17 +139,17 @@ export default function App() {
 
       {/* Footer */}
       <footer className="relative z-10 py-16 px-6 border-t border-[rgba(224,122,63,0.15)] bg-[#140c07]/90 text-center font-mono text-xs text-[#7f6a5e] space-y-4">
-        <div className="flex justify-center items-center gap-4 text-base">
+        <div className="flex justify-center items-center gap-3">
           {PORTFOLIO_CONFIG.socials.map((s) => (
             <a
               key={s.label}
               href={s.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#bda89b] hover:text-[#e8a038] transition-colors"
+              className="w-9 h-9 rounded-xl bg-[#261910] hover:bg-[#e07a3f] border border-[rgba(224,122,63,0.25)] hover:border-[#e07a3f] text-[#bda89b] hover:text-[#140c07] flex items-center justify-center transition-all shadow-sm"
               title={s.label}
             >
-              <span>{s.icon}</span>
+              <PlatformIcon name={s.label} className="w-4 h-4" />
             </a>
           ))}
         </div>

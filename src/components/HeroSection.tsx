@@ -1,5 +1,6 @@
 import { PortfolioConfig } from '../types';
 import { ArrowDown, Play } from 'lucide-react';
+import { PlatformIcon } from './PlatformIcon';
 
 interface HeroSectionProps {
   config: PortfolioConfig['hero'];
@@ -50,7 +51,7 @@ export function HeroSection({ config, socials, onPressStart }: HeroSectionProps)
         </button>
       </div>
 
-      {/* Social links */}
+      {/* Social links with vector platform icons */}
       <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
         {socials.map((social) => (
           <a
@@ -59,9 +60,9 @@ export function HeroSection({ config, socials, onPressStart }: HeroSectionProps)
             target="_blank"
             rel="noopener noreferrer"
             title={social.label}
-            className="w-11 h-11 rounded-xl bg-[#261910] hover:bg-[#e07a3f] border border-[rgba(224,122,63,0.3)] hover:border-[#e07a3f] text-[#faede5] hover:text-[#140c07] flex items-center justify-center text-lg transition-all duration-200 transform hover:-translate-y-1 shadow-sm"
+            className="w-11 h-11 rounded-xl bg-[#261910] hover:bg-[#e07a3f] border border-[rgba(224,122,63,0.3)] hover:border-[#e07a3f] text-[#faede5] hover:text-[#140c07] flex items-center justify-center transition-all duration-200 transform hover:-translate-y-1 shadow-sm group"
           >
-            <span>{social.icon}</span>
+            <PlatformIcon name={social.label} className="w-5 h-5 transition-transform group-hover:scale-110" />
           </a>
         ))}
       </div>

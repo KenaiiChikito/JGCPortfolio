@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ProgrammingProject } from '../types';
-import { Code2, ExternalLink, Github, Play, Terminal, CheckCircle2 } from 'lucide-react';
+import { Code2, ExternalLink, Play, Terminal, CheckCircle2 } from 'lucide-react';
+import { PlatformIcon } from './PlatformIcon';
 
 interface World02ProjectsProps {
   proyectos: ProgrammingProject[];
@@ -140,7 +141,7 @@ export function World02Projects({ proyectos, onOpenVideo }: World02ProjectsProps
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 font-mono text-xs text-[#faede5] bg-[#261910] hover:bg-[#e07a3f] hover:text-[#140c07] border border-[rgba(224,122,63,0.3)] hover:border-[#e07a3f] px-3.5 py-2 rounded-lg transition-all font-semibold"
                     >
-                      <Github className="w-3.5 h-3.5" />
+                      <PlatformIcon name="github" className="w-3.5 h-3.5" />
                       <span>⟨/⟩ Código Fuente</span>
                     </a>
                   )}
@@ -152,7 +153,7 @@ export function World02Projects({ proyectos, onOpenVideo }: World02ProjectsProps
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 font-mono text-xs text-[#faede5] bg-[#261910] hover:bg-[#e8a038] hover:text-[#140c07] border border-[rgba(224,122,63,0.3)] hover:border-[#e8a038] px-3.5 py-2 rounded-lg transition-all font-semibold"
                     >
-                      <ExternalLink className="w-3.5 h-3.5" />
+                      <PlatformIcon name="itch.io" className="w-3.5 h-3.5 text-[#e8a038] group-hover:text-[#140c07]" />
                       <span>▶ Demo / Jugar</span>
                     </a>
                   )}

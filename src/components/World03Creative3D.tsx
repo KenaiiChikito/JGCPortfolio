@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { PortfolioConfig, Render3DProject } from '../types';
+import { PlatformIcon } from './PlatformIcon';
 import {
   ChevronLeft,
   ChevronRight,
@@ -106,9 +107,11 @@ export function World03Creative3D({ modeladoData }: World03Creative3DProps) {
               rel="noopener noreferrer"
               className="group bg-[#1c120b] border border-[rgba(224,122,63,0.2)] hover:border-[#e07a3f] p-4 rounded-xl transition-all hover:-translate-y-1 flex items-start justify-between shadow-sm"
             >
-              <div className="space-y-1">
+              <div className="space-y-1.5">
                 <div className="flex items-center gap-2">
-                  <Box className="w-4 h-4 text-[#e8a038]" />
+                  <div className="w-6 h-6 rounded-lg bg-[#261910] flex items-center justify-center text-[#e8a038] group-hover:text-[#e07a3f] transition-colors">
+                    <PlatformIcon name={plat.nombre} className="w-4 h-4" />
+                  </div>
                   <span className="font-display font-bold text-[#faede5] group-hover:text-[#e8a038] transition-colors">
                     {plat.nombre}
                   </span>
@@ -242,7 +245,7 @@ export function World03Creative3D({ modeladoData }: World03Creative3DProps) {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 font-mono text-xs text-[#faede5] bg-[#261910] hover:bg-[#e07a3f] hover:text-[#140c07] border border-[rgba(224,122,63,0.3)] hover:border-[#e07a3f] px-3.5 py-2 rounded-lg transition-all font-semibold"
                     >
-                      <Box className="w-3.5 h-3.5" />
+                      <PlatformIcon name={plat.icono || plat.nombre} className="w-3.5 h-3.5" />
                       <span>{plat.nombre}</span>
                       <ExternalLink className="w-3 h-3 opacity-70" />
                     </a>
@@ -337,6 +340,7 @@ export function World03Creative3D({ modeladoData }: World03Creative3DProps) {
                     rel="noopener noreferrer"
                     className="font-mono text-xs text-[#140c07] bg-[#e8a038] hover:bg-[#f59e0b] px-3 py-1.5 rounded-lg font-bold transition-colors inline-flex items-center gap-1.5"
                   >
+                    <PlatformIcon name={p.icono || p.nombre} className="w-3.5 h-3.5" />
                     <span>{p.nombre}</span>
                     <ExternalLink className="w-3 h-3" />
                   </a>
