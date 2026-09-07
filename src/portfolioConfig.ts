@@ -53,7 +53,7 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
      ================================================================================== */
   avatar: {
     // Reemplaza por el enlace a tu foto (se recomienda imagen cuadrada 1:1)
-    src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80",
+    src: "./Avatar.jpg",
     badge: "LV. 25 DEV", // Insignia en la esquina inferior de la foto
   },
 
