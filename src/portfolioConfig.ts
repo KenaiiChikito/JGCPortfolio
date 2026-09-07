@@ -23,13 +23,13 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
      ================================================================================== */
   hero: {
     // Texto superior parpadeante (ej: "DISPONIBLE PARA NUEVOS PROYECTOS" o "EN BUSCA DE EQUIPO")
-    tagAvailability: "DISPONIBLE PARA PROYECTOS GRANDES O FREE LANCER",
+    tagAvailability: "DISPONIBLE PARA PROYECTOS GRANDES, MEDIANOS O TAMBIEN PEQUEÑOS",
     
     // Tu nombre o gamertag principal
     nombre: "Juan Gomez",
     
     // Tu especialidad o título profesional (incluye cursor titilante en la pantalla)
-    rol: "Game Programmer & 3D Artist",
+    rol: "Game Programmer - 3D Artist - Free-Lancer",
     
     // Breve descripción o frase de impacto que aparece debajo del rol
     tagline: "Desarrollo de videojuegos, combinando código de alto rendimiento con arte 3D estilizado.",
@@ -66,9 +66,9 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
 
   // Párrafos de tu historia/bio (puedes agregar o quitar líneas en este arreglo)
   bio: [
-    "¡Hola viajero! Soy programador de videojuegos y artista 3D con más de 5 años forjando experiencias inmersivas tanto en motores comerciales como en arquitecturas propietarias.",
-    "Mi enfoque central radica en la convergencia entre la lógica de programación rigurosa (arquitectura de gameplay en C++ y C#, shaders HLSL, simulación física) y la creación visual de modelos 3D optimizados para tiempo real.",
-    "Cuando no estoy optimizando draw calls o esculpiendo mallas en Blender y ZBrush, disfruto componer prototipos en game jams y compartir recursos con la comunidad de desarrollo."
+    "¡Hola lector! Soy estudiante de desarrollo de videojuegos, artista hard-surface y buscando el aprender modelado organico.", 
+    "Mi rol principal es de programacion en motores de desarrollo como Unity, Unreal y basico de Godot, con conocimiento de modelado hard-surface en Blender siempre tratando de hacer Props propios para proyectos propios o subirlos para aquellos que les cuesta un poco hacerlos.",
+    "Cuando no estoy programando estoy aprendiendo modelado organico en la aplicacion de NomadSculpt con formato estilizado para poder a futuro hacer mis propias creaciones e implementarla en futuros proyectos."
   ],
 
   // Atributos y estadísticas RPG (valores del 0 al 100) que se animan al hacer scroll
@@ -159,43 +159,121 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
      ================================================================================== */
   proyectoProgramacionDestacado: {
     subtituloBadge: "MUNDO 02-B · SPOTLIGHT TÉCNICO",
-    titulo: "DUNGEON SYNAPSE (ROGUE-AI)",
-    subtitulo: "Arquitectura de Juego, Procedural & IA Táctica",
-    descripcion: "Sistema de juego completo que integra generación procedural de niveles determinista mediante Wave Function Collapse, máquinas de estados jerárquicas (HFSM) para IA enemiga y un framework modular de habilidades desacoplado basado en ScriptableObjects y eventos C#.",
-    historiaDesarrollo: "Diseñado con énfasis en modularidad y cero recolección de basura (GC) en el bucle principal, asegurando una tasa fija de 60 FPS estables.",
+    titulo: "RUSTED STEAM GEAR",
+    subtitulo: "Programacion de sistema de movimiento y conexion con Photon",
+    descripcion: "Trabaje como estudiante en el desarrollo de Rusted Steam Gear en el area de programacion para la funcionalidad completa de este mismo, tanto movimiento, disparos, vida y destruccion de murallas, este videojuego fue desarrollado principalmente como trabajo de universidad.",
+    historiaDesarrollo: "Diseñado con enfasis en el area de Photon-PUN2 para conexion local/LAN con una misma build.",
     imagen: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=900&auto=format&fit=crop&q=80",
-    video: "",
-    tags: ["Unity", "C#", "Wave Function Collapse", "HFSM IA", "Optimización"],
+    video: "", //por si hay video de youtube o similar para posibles gameplays
+    tags: ["Unity", "C#", "Optimización"],
+
+    // Barra inferior de estado (puedes cambiar los textos libremente o poner mostrarStatusFooter: false)
+    statusTexto: "Status: Incompleto",
+    statusTargetBadge: "60 FPS TARGET",
+    mostrarStatusFooter: false, // Pon false si quieres ocultar toda la barra inferior
+
+    // CONSEJO: Para "esconder" métricas o bloques sin borrarlos, puedes:
+    // Opción 1: Agregar "visible: false" al objeto que quieras apagar.
+    // Opción 2: Comentar la línea colocando // al inicio o envolviendo con /* ... */
     metricasRendimiento: [
-      { label: "Frame Rate", valor: "60+ FPS", detalle: "Estable en PC & Consola" },
-      { label: "GC Alloc / Frame", valor: "0 Bytes", detalle: "Zero Allocation Loop" },
-      { label: "Generación de Mapa", valor: "< 45 ms", detalle: "Seed Determinista 64-bit" },
-      { label: "Entidades Activas", valor: "120+ Agentes", detalle: "Árboles de Comportamiento" },
+      { label: "Frame Rate", valor: "60+ FPS", detalle: "Estable en PC", visible: true },
+      { label: "GC Alloc / Frame", valor: "0 Bytes", detalle: "Zero Allocation Loop", visible: true },
+      // Cambia "visible: true" a "visible: false" para ocultarlo en la web sin borrar el código:
+      { label: "Generación de Mapa", valor: "< 45 ms", detalle: "Seed Determinista 64-bit", visible: false },
+      { label: "Entidades Activas", valor: "120+ Agentes", detalle: "Árboles de Comportamiento", visible: false },
     ],
     caracteristicasTecnicas: [
-      { titulo: "Generador Procedural Determinista", descripcion: "Algoritmo Wave Function Collapse con propagación de restricciones y verificación de conectividad mediante grafos." },
-      { titulo: "Arquitectura Event-Driven Desacoplada", descripcion: "Comportamientos y estados comunicados vía ScriptableObject Events, eliminando acoplamiento rígido." },
-      { titulo: "Pool de Objetos & Reutilización de Memoria", descripcion: "Estructuras pre-asignadas para proyectiles, efectos visuales y enemigos sin sobrecargar la memoria." },
+      // Puedes apagar cualquiera con visible: false
+      { titulo: "Multiplayer Active", descripcion: "Funciones integradas de Photon-PUN para el juego multijugador entre computadoras.", visible: true },
+      { titulo: "Simulación basada en inputs", descripcion: "Inputs unicos verificados de forma local para ambas computadoras para no tener problemas con estos mismos.", visible: true },
+      { titulo: "Pool de Objetos & Reutilización de Memoria", descripcion: "Estructuras pre-asignadas para proyectiles, efectos visuales y enemigos sin sobrecargar la memoria.", visible: false },
     ],
     codigoSnippet: {
       lenguaje: "C#",
-      archivo: "EnemyTacticalBrain.cs",
-      codigo: `public class TacticalAgent : MonoBehaviour {
-    [SerializeField] private StateMachine _stateMachine;
-    [SerializeField] private SensorModule _sensors;
+      archivo: "GameManager.cs",
+      codigo: `using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
+using UnityEngine.SceneManagement;
 
-    private void FixedUpdate() {
-        if (_sensors.HasLineOfSight(Target)) {
-            _stateMachine.TransitionTo<FlankTargetState>();
-        } else {
-            _stateMachine.TransitionTo<PatrolWaypointsState>();
+public class GameManager : MonoBehaviourPunCallbacks
+{
+    public GameObject winPanel;   
+    public GameObject pausePanel; 
+    private bool isPaused = false;
+
+    void Start()
+    {
+        // Al iniciar la partida, ocultamos el mouse pero lo dejamos funcional
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.None; 
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && !winPanel.activeSelf)
+        {
+            TogglePause();
         }
+    }
+
+    public void TogglePause()
+    {
+        isPaused = !isPaused;
+        pausePanel.SetActive(isPaused);
+
+        if (isPaused)
+        {
+            // EN PAUSA: Mouse visible para clickear botones
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            Time.timeScale = 0f; // Opcional: frena el tiempo local
+        }
+        else
+        {
+            // JUGANDO: Mouse invisible pero NO bloqueado para que el Raycast funcione
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.None; 
+            Time.timeScale = 1f;
+        }
+    }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
+        {
+            ShowWinUI();
+        }
+    }
+
+    void ShowWinUI()
+    {
+        pausePanel.SetActive(false);
+        winPanel.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void OnClick_Leave()
+    {
+        Time.timeScale = 1f;
+        PhotonNetwork.LeaveRoom();
+    }
+
+    public override void OnLeftRoom()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+
+    public void OnClick_Quit()
+    {
+        Application.Quit();
     }
 }`
     },
-    linkDemo: "https://kenaiichikito.itch.io/",
-    linkCodigo: "https://github.com/KenaiiChikito",
-    linkGDD: "https://github.com/KenaiiChikito",
+    linkDemo: "https://kenaiichikito.itch.io/", //añadir a futuro link del juego directo
+    linkCodigo: "https://github.com/KenaiiChikito/Prototipo.git", //añadir a futuro el repertorio de Github directo
+    //linkGDD: "https://github.com/KenaiiChikito", //añadir a futuro link de GDD de Notion
   },
 
   /* ==================================================================================

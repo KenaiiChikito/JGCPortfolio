@@ -25,6 +25,11 @@ export function WorldFeaturedProgramming({ proyecto, onOpenVideo }: WorldFeature
 
   if (!proyecto) return null;
 
+  const metricasVisibles = (proyecto.metricasRendimiento || []).filter((m) => m.visible !== false);
+  const caracteristicasVisibles = (proyecto.caracteristicasTecnicas || []).filter((c) => c.visible !== false);
+  const tieneCodigoVisible = Boolean(proyecto.codigoSnippet && proyecto.codigoSnippet.visible !== false);
+  const currentTab = activeTab === 'codigo' && !tieneCodigoVisible ? 'arquitectura' : activeTab;
+
   return (
     <section
       id="prog-destacado"
@@ -141,26 +146,28 @@ export function WorldFeaturedProgramming({ proyecto, onOpenVideo }: WorldFeature
                 </div>
 
                 {/* Performance Metrics Cards */}
-                <div className="space-y-2 mb-6">
-                  <div className="font-mono text-xs text-[#7f6a5e] uppercase tracking-wider flex items-center gap-1.5 mb-2">
-                    <Zap className="w-3.5 h-3.5 text-[#e8a038]" />
-                    <span>Métricas de Rendimiento & Optimización</span>
+                {metricasVisibles.length > 0 && (
+                  <div className="space-y-2 mb-6">
+                    <div className="font-mono text-xs text-[#7f6a5e] uppercase tracking-wider flex items-center gap-1.5 mb-2">
+                      <Zap className="w-3.5 h-3.5 text-[#e8a038]" />
+                      <span>Métricas de Rendimiento & Optimización</span>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2.5">
+                      {metricasVisibles.map((metrica) => (
+                        <div
+                          key={metrica.label}
+                          className="bg-[#1c120b] border border-[rgba(224,122,63,0.2)] rounded-xl p-3 flex flex-col"
+                        >
+                          <span className="font-mono text-[11px] text-[#7f6a5e]">{metrica.label}</span>
+                          <span className="font-display text-lg font-bold text-[#faede5]">{metrica.valor}</span>
+                          {metrica.detalle && (
+                            <span className="font-mono text-[10px] text-[#e8a038] mt-0.5">{metrica.detalle}</span>
+                          )}
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <div className="grid grid-cols-2 gap-2.5">
-                    {proyecto.metricasRendimiento.map((metrica) => (
-                      <div
-                        key={metrica.label}
-                        className="bg-[#1c120b] border border-[rgba(224,122,63,0.2)] rounded-xl p-3 flex flex-col"
-                      >
-                        <span className="font-mono text-[11px] text-[#7f6a5e]">{metrica.label}</span>
-                        <span className="font-display text-lg font-bold text-[#faede5]">{metrica.valor}</span>
-                        {metrica.detalle && (
-                          <span className="font-mono text-[10px] text-[#e8a038] mt-0.5">{metrica.detalle}</span>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                )}
               </div>
 
               {/* Tag Badges list */}
@@ -196,7 +203,7 @@ export function WorldFeaturedProgramming({ proyecto, onOpenVideo }: WorldFeature
                   <button
                     onClick={() => setActiveTab('arquitectura')}
                     className={`font-mono text-xs py-2.5 px-4 font-bold border-b-2 transition-all flex items-center gap-2 ${
-                      activeTab === 'arquitectura'
+                      currentTab === 'arquitectura'
                         ? 'border-[#e8a038] text-[#e8a038]'
                         : 'border-transparent text-[#7f6a5e] hover:text-[#faede5]'
                     }`}
@@ -205,25 +212,25 @@ export function WorldFeaturedProgramming({ proyecto, onOpenVideo }: WorldFeature
                     <span>Sistemas & Arquitectura</span>
                   </button>
 
-                  {proyecto.codigoSnippet && (
+                  {tieneCodigoVisible && (
                     <button
                       onClick={() => setActiveTab('codigo')}
                       className={`font-mono text-xs py-2.5 px-4 font-bold border-b-2 transition-all flex items-center gap-2 ${
-                        activeTab === 'codigo'
+                        currentTab === 'codigo'
                           ? 'border-[#e8a038] text-[#e8a038]'
                           : 'border-transparent text-[#7f6a5e] hover:text-[#faede5]'
                       }`}
                     >
                       <Terminal className="w-3.5 h-3.5" />
-                      <span>Snippet de Código ({proyecto.codigoSnippet.lenguaje})</span>
+                      <span>Snippet de Código ({proyecto.codigoSnippet?.lenguaje})</span>
                     </button>
                   )}
                 </div>
 
                 {/* Tab Content */}
-                {activeTab === 'arquitectura' ? (
+                {currentTab === 'arquitectura' ? (
                   <div className="space-y-3.5">
-                    {proyecto.caracteristicasTecnicas.map((item, idx) => (
+                    {caracteristicasVisibles.map((item, idx) => (
                       <div
                         key={idx}
                         className="bg-[#24160d]/70 border border-[rgba(224,122,63,0.2)] hover:border-[#e07a3f]/50 p-4 rounded-xl transition-all"
@@ -243,7 +250,7 @@ export function WorldFeaturedProgramming({ proyecto, onOpenVideo }: WorldFeature
                     ))}
                   </div>
                 ) : (
-                  proyecto.codigoSnippet && (
+                  tieneCodigoVisible && proyecto.codigoSnippet && (
                     <div className="rounded-xl overflow-hidden border border-[rgba(224,122,63,0.3)] bg-[#140c07] font-mono text-xs shadow-inner">
                       <div className="bg-[#1f130a] px-4 py-2 border-b border-[rgba(224,122,63,0.2)] flex items-center justify-between text-[#7f6a5e]">
                         <span className="text-xs text-[#e8a038]">{proyecto.codigoSnippet.archivo}</span>
@@ -258,13 +265,15 @@ export function WorldFeaturedProgramming({ proyecto, onOpenVideo }: WorldFeature
               </div>
 
               {/* Bottom Quick Bar */}
-              <div className="mt-8 pt-4 border-t border-[rgba(224,122,63,0.15)] flex items-center justify-between font-mono text-xs text-[#7f6a5e]">
-                <span>Status: Compilado & Optimizado</span>
-                <span className="text-[#85994b] font-bold flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-[#85994b] inline-block" />
-                  60 FPS TARGET
-                </span>
-              </div>
+              {proyecto.mostrarStatusFooter !== false && (
+                <div className="mt-8 pt-4 border-t border-[rgba(224,122,63,0.15)] flex items-center justify-between font-mono text-xs text-[#7f6a5e]">
+                  <span>{proyecto.statusTexto || "Status: Compilado & Optimizado"}</span>
+                  <span className="text-[#85994b] font-bold flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-[#85994b] inline-block" />
+                    {proyecto.statusTargetBadge || "60 FPS TARGET"}
+                  </span>
+                </div>
+              )}
             </div>
           </div>
         </div>

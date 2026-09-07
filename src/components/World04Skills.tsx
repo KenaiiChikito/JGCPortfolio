@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { PortfolioConfig, SkillItem } from '../types';
 import { Backpack, Sparkles, Star } from 'lucide-react';
+import { SkillLogo } from './SkillLogo';
 
 interface World04SkillsProps {
   inventario: PortfolioConfig['inventario'];
@@ -56,9 +57,9 @@ export function World04Skills({ inventario }: World04SkillsProps) {
                           : 'border-[rgba(224,122,63,0.25)] hover:border-[#e07a3f] hover:bg-[#261910]'
                       }`}
                     >
-                      {/* Slot Icon */}
-                      <div className="text-2xl sm:text-3xl mb-1.5 transition-transform group-hover:scale-110">
-                        {item.icon}
+                      {/* Slot Icon - Official Application / Language Vector Logo */}
+                      <div className="w-10 h-10 mb-2 flex items-center justify-center transition-transform group-hover:scale-110 drop-shadow-sm">
+                        <SkillLogo label={item.label} fallback={item.icon} className="w-8 h-8 object-contain" />
                       </div>
 
                       {/* Label */}
@@ -82,8 +83,12 @@ export function World04Skills({ inventario }: World04SkillsProps) {
 
         {/* Selected item inspector box (RPG Item details card) */}
         <div className="mt-12 bg-[#1c120b] border border-[#e8a038]/40 rounded-2xl p-5 sm:p-6 shadow-xl flex flex-col sm:flex-row items-center sm:items-start gap-5">
-          <div className="w-16 h-16 rounded-xl bg-[#261910] border border-[#e8a038] flex items-center justify-center text-3xl shrink-0 shadow-md">
-            {activeItem ? activeItem.icon : '✨'}
+          <div className="w-16 h-16 rounded-xl bg-[#261910] border border-[#e8a038] flex items-center justify-center shrink-0 shadow-md p-2.5">
+            {activeItem ? (
+              <SkillLogo label={activeItem.label} fallback={activeItem.icon} className="w-11 h-11 object-contain" />
+            ) : (
+              <Sparkles className="w-8 h-8 text-[#e8a038]" />
+            )}
           </div>
 
           <div className="flex-1 text-center sm:text-left space-y-1.5">

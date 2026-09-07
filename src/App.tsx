@@ -13,12 +13,55 @@ import { World05SaveGame } from './components/World05SaveGame';
 import { AchievementToast } from './components/AchievementToast';
 import { VideoModal } from './components/VideoModal';
 import { PlatformIcon } from './components/PlatformIcon';
+import { FontSwitcher, FontMode } from './components/FontSwitcher';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('inicio');
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
   const [achievementMsg, setAchievementMsg] = useState<string | null>(null);
   const [unlockedWorlds, setUnlockedWorlds] = useState<Set<string>>(new Set(['inicio']));
+
+  // Visualización reversible de las opciones de tipografía
+  const [fontMode, setFontMode] = useState<FontMode>(() => {
+    const saved = localStorage.getItem('font_mode_preference') as FontMode | null;
+    const validModes: FontMode[] = ['original', 'milky-vintage', 'oxanium', 'pixelify', 'space-mono'];
+    if (saved && validModes.includes(saved)) {
+      return saved;
+    }
+    // Previsualización sugerida por defecto para programador/modelador 3D: Oxanium
+    return 'oxanium';
+  });
+
+  // Efecto visual vintage (Monitor CRT / Scanlines analógicas)
+  const [vintageEffect, setVintageEffect] = useState<boolean>(() => {
+    return localStorage.getItem('vintage_effect_preference') === 'true';
+  });
+
+  const handleSelectFont = (mode: FontMode) => {
+    setFontMode(mode);
+    localStorage.setItem('font_mode_preference', mode);
+  };
+
+  const handleToggleVintageEffect = (enabled: boolean) => {
+    setVintageEffect(enabled);
+    localStorage.setItem('vintage_effect_preference', String(enabled));
+  };
+
+  const getFontThemeClass = (mode: FontMode) => {
+    switch (mode) {
+      case 'oxanium':
+        return 'theme-oxanium';
+      case 'pixelify':
+        return 'theme-pixelify';
+      case 'space-mono':
+        return 'theme-space-mono';
+      case 'milky-vintage':
+        return 'theme-milky';
+      case 'original':
+      default:
+        return '';
+    }
+  };
 
   // Achievement names for each level
   const worldAchievements: Record<string, string> = {
@@ -79,7 +122,11 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#140c07] text-[#faede5] relative selection:bg-[#e07a3f] selection:text-[#140c07]">
+    <div
+      className={`min-h-screen bg-[#140c07] text-[#faede5] relative selection:bg-[#e07a3f] selection:text-[#140c07] ${getFontThemeClass(fontMode)} ${
+        vintageEffect ? 'effect-vintage-crt' : ''
+      }`}
+    >
       {/* Dynamic Autumn Leaves & Embers Ambient Canvas */}
       <AutumnCanvas />
 
@@ -171,6 +218,14 @@ export default function App() {
       <VideoModal
         videoId={activeVideo}
         onClose={() => setActiveVideo(null)}
+      />
+
+      {/* Floating Reversible Typography Switcher */}
+      <FontSwitcher
+        fontMode={fontMode}
+        onSelectFont={handleSelectFont}
+        vintageEffect={vintageEffect}
+        onToggleVintageEffect={handleToggleVintageEffect}
       />
     </div>
   );

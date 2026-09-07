@@ -21,6 +21,7 @@ export interface ProgrammingProject {
   linkCodigo?: string;
   destacado?: boolean;
   detallesTecnicos?: string[];
+  visible?: boolean; // Permite ocultar temporalmente sin borrar el código (visible: false)
 }
 
 export interface Render3DProject {
@@ -37,6 +38,7 @@ export interface Render3DProject {
     url: string;
     icono?: string;
   }[];
+  visible?: boolean; // Permite ocultar temporalmente sin borrar el código (visible: false)
 }
 
 export interface SkillItem {
@@ -44,6 +46,7 @@ export interface SkillItem {
   label: string;
   nivel?: string; // e.g., 'Experto', 'Avanzado'
   descripcion?: string;
+  visible?: boolean;
 }
 
 export interface HistorialUpdate {
@@ -63,19 +66,26 @@ export interface FeaturedProgrammingProject {
   imagen: string;
   video?: string;
   tags: string[];
+  // Campos configurables para el footer inferior de la tarjeta
+  statusTexto?: string; // Por ejemplo: "Status: Compilado & Optimizado"
+  statusTargetBadge?: string; // Por ejemplo: "60 FPS TARGET" o "LAN MULTIPLAYER OK"
+  mostrarStatusFooter?: boolean; // Poner en false si se desea ocultar toda la barra inferior
   metricasRendimiento: {
     label: string;
     valor: string;
     detalle?: string;
+    visible?: boolean; // Permite ocultar esta métrica con visible: false
   }[];
   caracteristicasTecnicas: {
     titulo: string;
     descripcion: string;
+    visible?: boolean; // Permite ocultar este bloque con visible: false
   }[];
   codigoSnippet?: {
     lenguaje: string;
     archivo: string;
     codigo: string;
+    visible?: boolean; // Permite ocultar la pestaña de código con visible: false
   };
   linkDemo?: string;
   linkCodigo?: string;

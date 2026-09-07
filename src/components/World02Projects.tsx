@@ -11,13 +11,15 @@ interface World02ProjectsProps {
 export function World02Projects({ proyectos, onOpenVideo }: World02ProjectsProps) {
   const [selectedTag, setSelectedTag] = useState<string>('Todos');
 
+  const proyectosVisibles = proyectos.filter((p) => p.visible !== false);
+
   // Extract all unique tags
-  const allTags = ['Todos', ...Array.from(new Set(proyectos.flatMap((p) => p.tags)))];
+  const allTags = ['Todos', ...Array.from(new Set(proyectosVisibles.flatMap((p) => p.tags)))];
 
   const filteredProjects =
     selectedTag === 'Todos'
-      ? proyectos
-      : proyectos.filter((p) => p.tags.includes(selectedTag));
+      ? proyectosVisibles
+      : proyectosVisibles.filter((p) => p.tags.includes(selectedTag));
 
   return (
     <section id="proyectos" className="relative z-10 py-24 md:py-32 border-t border-[rgba(224,122,63,0.2)]">

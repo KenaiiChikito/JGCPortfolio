@@ -20,7 +20,8 @@ interface World03Creative3DProps {
 }
 
 export function World03Creative3D({ modeladoData }: World03Creative3DProps) {
-  const { renders, plataformasPrincipales, descripcionSeccion } = modeladoData;
+  const { plataformasPrincipales, descripcionSeccion } = modeladoData;
+  const renders = (modeladoData.renders || []).filter((r) => r.visible !== false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
   const [lightboxRender, setLightboxRender] = useState<Render3DProject | null>(null);
