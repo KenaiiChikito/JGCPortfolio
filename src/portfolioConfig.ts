@@ -283,7 +283,7 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
   },
 
   // URL para el código QR interactivo de tu portafolio
-  qrUrl: "https://alexrivera-portfolio.dev",
+  qrUrl: "https://kenaiichikito.github.io/PortfolioGit/",
 
   // NUEVA SECCIÓN: Registro de guardado / Historial de actualizaciones (Changelog de parches)
   historialActualizaciones: [
