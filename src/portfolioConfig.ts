@@ -23,7 +23,7 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
      ================================================================================== */
   hero: {
     // Texto superior parpadeante (ej: "DISPONIBLE PARA NUEVOS PROYECTOS" o "EN BUSCA DE EQUIPO")
-    tagAvailability: "DISPONIBLE PARA NUEVOS PROYECTOS",
+    tagAvailability: "DISPONIBLE PARA PROYECTOS GRANDES O FREE LANCER",
     
     // Tu nombre o gamertag principal
     nombre: "Juan Gomez",
@@ -182,60 +182,60 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
 
     // Modelos que aparecen en el carrusel / slider interactivo
     renders: [
+      // {
+      //   id: "render-01",
+      //   titulo: "EL GUARDIÁN DE OCRE",
+      //   subtitulo: "Personaje Game-Ready · Fantasy Sci-Fi",
+      //   descripcion: "Criatura autómata inspirada en la arquitectura de bronce y hojas otoñales. Modelada en ZBrush con retopología manual en Blender y mapas de texturas 4K.",
+      //   imagen: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=1200&auto=format&fit=crop&q=80",
+      //   software: ["Blender", "ZBrush", "Substance 3D Painter", "Marmoset Toolbag"],
+      //   polycount: "28,450 Tris",
+      //   texturas: "2 Sets 4K (Albedo, Normal, Roughness, Metal, AO, Emission)",
+      //   plataformas: [
+      //     { nombre: "Ver en ArtStation", url: "https://artstation.com" },
+      //     { nombre: "Inspeccionar 3D en Sketchfab", url: "https://sketchfab.com" }
+      //   ]
+      // },
+      // {
+      //   id: "render-02",
+      //   titulo: "ESPADA RÚNICA SOLAR",
+      //   subtitulo: "Hard-Surface Prop · Hero Asset",
+      //   descripcion: "Arma ceremonial forjada en obsidiana y aleación de cobre otoñal. Diseñada como arma principal para un RPG en tercera persona, con efectos de brillo rúnico parametrizables.",
+      //   imagen: "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1200&auto=format&fit=crop&q=80",
+      //   software: ["Blender", "Substance 3D Painter", "Photoshop"],
+      //   polycount: "6,200 Tris",
+      //   texturas: "1 Set 4K PBR Met/Rough",
+      //   plataformas: [
+      //     { nombre: "Ver en ArtStation", url: "https://artstation.com" },
+      //     { nombre: "Descargar en Gumroad", url: "https://gumroad.com" }
+      //   ]
+      // },
       {
-        id: "render-01",
-        titulo: "EL GUARDIÁN DE OCRE",
-        subtitulo: "Personaje Game-Ready · Fantasy Sci-Fi",
-        descripcion: "Criatura autómata inspirada en la arquitectura de bronce y hojas otoñales. Modelada en ZBrush con retopología manual en Blender y mapas de texturas 4K.",
-        imagen: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=1200&auto=format&fit=crop&q=80",
-        software: ["Blender", "ZBrush", "Substance 3D Painter", "Marmoset Toolbag"],
-        polycount: "28,450 Tris",
-        texturas: "2 Sets 4K (Albedo, Normal, Roughness, Metal, AO, Emission)",
+        id: "Nomad Model",
+        titulo: "Mascara",
+        subtitulo: "Mascara Japonesa estilizado (no terminado)",
+        descripcion: "Diseño de mascara estilo japonesa modelada en NomadSculpt con un formato de diseño estilizado.",
+        imagen: "./Mask.png",
+        software: ["NomadSculpt"],
+        polycount: "278.7k Triangles",
+        texturas: "Uncolored",
         plataformas: [
-          { nombre: "Ver en ArtStation", url: "https://artstation.com" },
-          { nombre: "Inspeccionar 3D en Sketchfab", url: "https://sketchfab.com" }
+          //{ nombre: "Ver desglose en ArtStation", url: "https://artstation.com" },
+          { nombre: "Ver proyecto en Sketchfab", url: "https://sketchfab.com/3d-models/mask-f2675005f0c64ecaa8a70f73482f2f59" }
         ]
       },
       {
-        id: "render-02",
-        titulo: "ESPADA RÚNICA SOLAR",
-        subtitulo: "Hard-Surface Prop · Hero Asset",
-        descripcion: "Arma ceremonial forjada en obsidiana y aleación de cobre otoñal. Diseñada como arma principal para un RPG en tercera persona, con efectos de brillo rúnico parametrizables.",
-        imagen: "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=1200&auto=format&fit=crop&q=80",
-        software: ["Blender", "Substance 3D Painter", "Photoshop"],
-        polycount: "6,200 Tris",
-        texturas: "1 Set 4K PBR Met/Rough",
+        id: "Nomad Model",
+        titulo: "Lizzard Model",
+        subtitulo: "Chibi Lizzard uncolored Model",
+        descripcion: "Modelo de lagarto hecho en tiempos de ocio en NomadSculpt, pensado principalmente como modelo de prueba para practicar y aprender modelado organico.",
+        imagen: "./Lizzard.png",
+        software: ["NomadSculpt"],
+        polycount: "863.3K Triangles",
+        texturas: "Uncolored",
         plataformas: [
-          { nombre: "Ver en ArtStation", url: "https://artstation.com" },
-          { nombre: "Descargar en Gumroad", url: "https://gumroad.com" }
-        ]
-      },
-      {
-        id: "render-03",
-        titulo: "TABERNA DEL BOSQUE DORADO",
-        subtitulo: "Modular Environment Diorama",
-        descripcion: "Diorama isométrico con piezas modulares de madera rústica, tejas otoñales y faroles de luz cálida. Diseñado con trim sheets para máxima eficiencia de memoria de textura.",
-        imagen: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1200&auto=format&fit=crop&q=80",
-        software: ["Blender", "Substance Designer", "Unreal Engine 5"],
-        polycount: "45,000 Tris (Escena Completa)",
-        texturas: "Trim Sheets Modulares 2K + Shader Master de Madera",
-        plataformas: [
-          { nombre: "Ver desglose en ArtStation", url: "https://artstation.com" },
-          { nombre: "Ver proyecto en Behance", url: "https://behance.net" }
-        ]
-      },
-      {
-        id: "render-04",
-        titulo: "ROBOT COSECHADOR DE BELLOTAS",
-        subtitulo: "Chibi Mech Character",
-        descripcion: "Mecanismo estilizado de exploración forestal con detalles de desgaste y óxido otoñal. Cuenta con esqueleto de huesos completamente configurado para cinemáticas y animaciones de ciclo de caminata.",
-        imagen: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=1200&auto=format&fit=crop&q=80",
-        software: ["Blender", "Substance 3D Painter", "Rigify"],
-        polycount: "14,800 Tris",
-        texturas: "1 Set 4K PBR Estilizado",
-        plataformas: [
-          { nombre: "Ver en ArtStation", url: "https://artstation.com" },
-          { nombre: "Modelo 3D en Sketchfab", url: "https://sketchfab.com" }
+          //{ nombre: "Ver en ArtStation", url: "https://artstation.com" },
+          { nombre: "Modelo 3D en Sketchfab", url: "https://sketchfab.com/3d-models/lizzard-7908c2bf3bfe489bbb9c78dd4c2bb0f6" }
         ]
       }
     ]
