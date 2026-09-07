@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg: #140c07;
+    --bg-elevated: #1c120b;
+    --surface: #261910;
+    --surface-2: #342217;
+    --line: rgba(224, 122, 63, 0.22);
+    --accent: #e07a3f;
+    --accent-hover: #f08b50;
+    --accent-soft: rgba(224, 122, 63, 0.15);
+    --ocre: #e8a038;
+    --ocre-soft: rgba(232, 160, 56, 0.18);
+    --terracotta: #c2522b;
+    --amber: #f59e0b;
+    --moss: #85994b;
+    --moss-soft: rgba(133, 153, 75, 0.18);
+    --text: #faede5;
+    --text-muted: #bda89b;
+    --text-dim: #7f6a5e;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-pixel: 'Press Start 2P', monospace;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--bg);
+    color: var(--text);
+  }
+
+  body {
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+}
+
+.font-pixel {
+  font-family: var(--font-pixel);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* Scanline retro texture overlay */
+.scanlines {
+  background: repeating-linear-gradient(
+    180deg,
+    rgba(20, 12, 7, 0.25) 0px,
+    rgba(20, 12, 7, 0.25) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  pointer-events: none;
+}
+
+/* Blinking cursor */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.15; }
+}
+
+.animate-blink {
+  animation: blink 1s steps(1) infinite;
+}
+
+/* Pulse animation for PRESS START */
+@keyframes autumn-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(232, 160, 56, 0.55); }
+  70% { box-shadow: 0 0 0 16px rgba(232, 160, 56, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(232, 160, 56, 0); }
+}
+
+.animate-autumn-pulse {
+  animation: autumn-pulse 2.2s infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #140c07;
+}
+::-webkit-scrollbar-thumb {
+  background: #342217;
+  border-radius: 4px;
+  border: 1px solid rgba(224, 122, 63, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #e07a3f;
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Portafolio Game Developer & 3D",
+  "description": "Portafolio interactivo con diseño de niveles estilo RPG en paleta otoñal, proyectos de programación, galería de modelado 3D, inventario y pantalla de guardado.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
