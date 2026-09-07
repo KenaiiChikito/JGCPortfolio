@@ -32,7 +32,7 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
     rol: "Game Programmer & 3D Artist",
     
     // Breve descripción o frase de impacto que aparece debajo del rol
-    tagline: "Desarrollo sistemas de juego escalables y físicas personalizadas, combinando código de alto rendimiento con arte 3D estilizado.",
+    tagline: "Desarrollo de videojuegos, combinando código de alto rendimiento con arte 3D estilizado.",
     
     // Texto del botón arcade principal
     botonPressStart: "▶ PRESS START",
@@ -77,8 +77,8 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
     { label: "GDD", value: 60 },
     { label: "Modelado Hard Surface", value: 60 },
     { label: "Modelado & Esculpido 3D", value: 20 },
-    { label: "Texturizado PBR (Substance)", value: 80 },
-    { label: "Optimización de Rendimiento", value: 90 },
+    //{ label: "Texturizado PBR (Substance)", value: 80 },
+   //{ label: "Optimización de Rendimiento", value: 90 },
   ],
 
   /* ==================================================================================
