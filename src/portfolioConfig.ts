@@ -204,7 +204,7 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
      en plataformas de arte 3D (ArtStation, Sketchfab, Behance, Gumroad, etc.).
      ================================================================================== */
   modelado3D: {
-    descripcionSeccion: "Exploración de assets 3D optimizados para tiempo real, desde personajes de alta densidad poligonal esculpidos en ZBrush hasta modelos de hard-surface texturizados con PBR en Substance 3D Painter.",
+    descripcionSeccion: "Exploración de assets 3D optimizados para tiempo real, desde personajes de alta densidad poligonal esculpidos en NomadCulpt hasta modelos de hard-surface en Blender.",
     
     // Plataformas donde subes tus modelos para que los visitantes los inspeccionen en 3D
     plataformasPrincipales: [
