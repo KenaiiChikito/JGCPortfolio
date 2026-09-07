@@ -67,6 +67,11 @@ export interface PortfolioConfig {
     src: string;
     badge: string;
   };
+  fichaRpg?: {
+    rolPrincipal: string;
+    motorFavorito: string;
+    staminaCreativa: string;
+  };
   bio: string[];
   stats: StatItem[];
   proyectosProgramacion: ProgrammingProject[];

@@ -6,10 +6,18 @@ interface World01AboutProps {
   avatar: PortfolioConfig['avatar'];
   bio: PortfolioConfig['bio'];
   stats: PortfolioConfig['stats'];
+  fichaRpg?: PortfolioConfig['fichaRpg'];
 }
 
-export function World01About({ avatar, bio, stats }: World01AboutProps) {
+export function World01About({ avatar, bio, stats, fichaRpg }: World01AboutProps) {
   const [animated, setAnimated] = useState(false);
+
+  // Valores de la ficha RPG con fallbacks
+  const rpgInfo = {
+    rolPrincipal: fichaRpg?.rolPrincipal || "Programador / 3D",
+    motorFavorito: fichaRpg?.motorFavorito || "C++ & Unity / Unreal",
+    staminaCreativa: fichaRpg?.staminaCreativa || "100% (Café Activo)",
+  };
 
   useEffect(() => {
     // Trigger animation slightly after mount
@@ -63,15 +71,15 @@ export function World01About({ avatar, bio, stats }: World01AboutProps) {
             <div className="w-full max-w-[288px] bg-[#1c120b] border border-[rgba(224,122,63,0.2)] rounded-xl p-3.5 font-mono text-xs text-[#bda89b] flex flex-col gap-1.5">
               <div className="flex justify-between">
                 <span className="text-[#7f6a5e]">Rol Principal:</span>
-                <span className="text-[#faede5] font-medium">Programador / 3D</span>
+                <span className="text-[#faede5] font-medium">{rpgInfo.rolPrincipal}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-[#7f6a5e]">Motor Favorito:</span>
-                <span className="text-[#e8a038]">C++ & Unity / Unreal</span>
+                <span className="text-[#e8a038] font-medium">{rpgInfo.motorFavorito}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-[#7f6a5e]">Stamina Creativa:</span>
-                <span className="text-[#85994b]">100% (Café Activo)</span>
+                <span className="text-[#85994b] font-medium">{rpgInfo.staminaCreativa}</span>
               </div>
             </div>
           </div>

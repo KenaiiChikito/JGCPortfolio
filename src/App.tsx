@@ -94,6 +94,7 @@ export default function App() {
           avatar={PORTFOLIO_CONFIG.avatar}
           bio={PORTFOLIO_CONFIG.bio}
           stats={PORTFOLIO_CONFIG.stats}
+          fichaRpg={PORTFOLIO_CONFIG.fichaRpg}
         />
 
         {/* Mundo 02: Proyectos (Enfocado en Programación) */}

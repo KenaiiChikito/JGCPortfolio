@@ -54,7 +54,14 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
   avatar: {
     // Reemplaza por el enlace a tu foto (se recomienda imagen cuadrada 1:1)
     src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80",
-    badge: "LV. 99 DEV", // Insignia en la esquina inferior de la foto
+    badge: "LV. 25 DEV", // Insignia en la esquina inferior de la foto
+  },
+
+  // Ficha rápida de personaje (debajo del avatar)
+  fichaRpg: {
+    rolPrincipal: "Programador / 3D",
+    motorFavorito: "C++ & Unity", // 👈 EDITA AQUÍ TU MOTOR FAVORITO (ej: "Unity", "Unreal Engine 5", "Godot", etc.)
+    staminaCreativa: "100% (Café Activo)",
   },
 
   // Párrafos de tu historia/bio (puedes agregar o quitar líneas en este arreglo)
@@ -66,10 +73,10 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
 
   // Atributos y estadísticas RPG (valores del 0 al 100) que se animan al hacer scroll
   stats: [
-    { label: "Programación C++ / C#", value: 94 },
-    { label: "Arquitectura & Motores", value: 88 },
-    { label: "Shaders & Gráficos HLSL", value: 82 },
-    { label: "Modelado & Esculpido 3D", value: 85 },
+    { label: "Programación C++ / C#", value: 83 },
+    { label: "GDD", value: 60 },
+    { label: "Modelado Hard Surface", value: 60 },
+    { label: "Modelado & Esculpido 3D", value: 20 },
     { label: "Texturizado PBR (Substance)", value: 80 },
     { label: "Optimización de Rendimiento", value: 90 },
   ],
@@ -242,30 +249,30 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
      ================================================================================== */
   inventario: {
     "Lenguajes de Programación": [
-      { icon: "⚡", label: "C#", nivel: "Avanzado", descripcion: "Gameplay en Unity, .NET, Arquitectura modular" },
-      { icon: "⚙️", label: "C++", nivel: "Avanzado", descripcion: "Unreal Engine, Motores propios, Gestión de memoria" },
-      { icon: "🦀", label: "Rust", nivel: "Intermedio", descripcion: "Desarrollo de herramientas de sistema seguras" },
-      { icon: "✨", label: "HLSL / GLSL", nivel: "Avanzado", descripcion: "Shaders de superficie, postprocesado y compute shaders" },
-      { icon: "🔷", label: "TypeScript", nivel: "Intermedio", descripcion: "Herramientas de automatización y UI web" },
+      { icon: "⚡", label: "C#", nivel: "Intermedio", descripcion: "Gameplay en Unity" },
+      { icon: "⚙️", label: "C++", nivel: "Intermedio", descripcion: "Unreal Engine" },
+      //{ icon: "🦀", label: "Rust", nivel: "Intermedio", descripcion: "Desarrollo de herramientas de sistema seguras" },
+      //{ icon: "✨", label: "HLSL / GLSL", nivel: "Avanzado", descripcion: "Shaders de superficie, postprocesado y compute shaders" },
+      //{ icon: "🔷", label: "TypeScript", nivel: "Intermedio", descripcion: "Herramientas de automatización y UI web" },
     ],
     "Motores de Videojuegos": [
-      { icon: "🎮", label: "Unity", nivel: "Experto", descripcion: "URP, HDRP, C#, animación, sistemas de UI" },
-      { icon: "🏰", label: "Unreal Engine 5", nivel: "Avanzado", descripcion: "C++, Blueprints, Nanite, Lumen, Niagara" },
-      { icon: "🧩", label: "Godot Engine", nivel: "Intermedio", descripcion: "C++ bindings y prototipado rápido" },
-      { icon: "🕹️", label: "Custom Engine", nivel: "Avanzado", descripcion: "Arquitectura OpenGL / Vulkan en C++" },
+      { icon: "🎮", label: "Unity", nivel: "Avanzado", descripcion: "URP, HDRP, C#, animación, sistemas de UI" },
+      { icon: "🏰", label: "Unreal Engine 5", nivel: "Principiante", descripcion: "C++, Blueprints" },
+      { icon: "🧩", label: "Godot Engine", nivel: "Principiante", descripcion: "Prototipado rápido" },
+      //{ icon: "🕹️", label: "Custom Engine", nivel: "Avanzado", descripcion: "Arquitectura OpenGL / Vulkan en C++" },
     ],
     "Modelado & Arte 3D": [
       { icon: "🌀", label: "Blender", nivel: "Avanzado", descripcion: "Modelado hard-surface, retopología, UVs y rigging" },
-      { icon: "🗿", label: "ZBrush", nivel: "Avanzado", descripcion: "Esculpido orgánico de alta fidelidad para personajes" },
-      { icon: "🎨", label: "Substance Painter", nivel: "Avanzado", descripcion: "Texturizado PBR, bakeado de mapas normales y AO" },
-      { icon: "🧱", label: "Substance Designer", nivel: "Intermedio", descripcion: "Materiales procedurales continuos y trim sheets" },
-      { icon: "📸", label: "Marmoset Toolbag", nivel: "Avanzado", descripcion: "Bakeado de geometrías y renders de presentación" },
+      { icon: "🗿", label: "NomadSculpt", nivel: "Intermedio", descripcion: "Aprendiendo esculpido orgánico" },
+      //{ icon: "🎨", label: "Substance Painter", nivel: "Avanzado", descripcion: "Texturizado PBR, bakeado de mapas normales y AO" },
+      //{ icon: "🧱", label: "Substance Designer", nivel: "Intermedio", descripcion: "Materiales procedurales continuos y trim sheets" },
+      //{ icon: "📸", label: "Marmoset Toolbag", nivel: "Avanzado", descripcion: "Bakeado de geometrías y renders de presentación" },
     ],
     "Herramientas & Pipeline": [
-      { icon: "🗂️", label: "Git & LFS", nivel: "Avanzado", descripcion: "Control de versiones para assets pesados de juego" },
-      { icon: "🔍", label: "RenderDoc", nivel: "Intermedio", descripcion: "Depuración de draw calls y análisis de pipeline GPU" },
+      //{ icon: "🗂️", label: "Git & LFS", nivel: "Avanzado", descripcion: "Control de versiones para assets pesados de juego" },
+      //{ icon: "🔍", label: "RenderDoc", nivel: "Intermedio", descripcion: "Depuración de draw calls y análisis de pipeline GPU" },
       { icon: "💻", label: "Visual Studio", nivel: "Avanzado", descripcion: "Profiling de CPU/memoria y debugging profundo" },
-      { icon: "🐳", label: "Docker", nivel: "Intermedio", descripcion: "Servidores dedicados de prueba para multiplayer" },
+      //{ icon: "🐳", label: "Docker", nivel: "Intermedio", descripcion: "Servidores dedicados de prueba para multiplayer" },
     ],
   },
 
@@ -275,10 +282,10 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
      y la nueva sección de HISTORIAL con las últimas actualizaciones realizadas.
      ================================================================================== */
   contacto: {
-    intro: "¿Tienes una vacante técnica, un proyecto indie o buscas un colaborador para programación y modelado 3D? Envíame un mensaje y te responderé en breve.",
-    email: "alexrivera.gamedev@ejemplo.com",
-    ubicacion: "Santiago, Chile — Disponible para trabajo remoto global",
-    disponibilidad: "Full-Time / Freelance / Contratos por Hito",
+    intro: "¿Tienes un proyecto indie o buscas un colaborador para programación y modelado 3D? Envíame un mensaje y te responderé en breve.",
+    email: "m.gomez.cornejo2001@gmail.com",
+    ubicacion: "Rancagua, Chile — Disponible para trabajo remoto global",
+    disponibilidad: "Freelance / Contratos por Hito",
     cvUrl: "#descargar-cv", // Coloca aquí el link directo a tu PDF en Google Drive o Dropbox
   },
 
