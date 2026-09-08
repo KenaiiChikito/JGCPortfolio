@@ -266,7 +266,7 @@ export function World03Creative3D({ modeladoData }: World03Creative3DProps) {
               const isActive = rIdx === currentIndex;
               return (
                 <button
-                  key={renderItem.id}
+                  key={`${renderItem.id || 'render'}-${rIdx}`}
                   onClick={() => {
                     setIsAutoPlay(false);
                     setCurrentIndex(rIdx);

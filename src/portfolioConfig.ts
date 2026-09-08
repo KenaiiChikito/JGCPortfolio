@@ -334,7 +334,7 @@ public class GameManager : MonoBehaviourPunCallbacks
       //   ]
       // },
       {
-        id: "Nomad Model",
+        id: "nomad-mask",
         titulo: "Mascara",
         subtitulo: "Mascara Japonesa estilizado (no terminado)",
         descripcion: "Diseño de mascara estilo japonesa modelada en NomadSculpt con un formato de diseño estilizado.",
@@ -348,7 +348,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         ]
       },
       {
-        id: "Nomad Model",
+        id: "nomad-lizzard",
         titulo: "Lizzard Model",
         subtitulo: "Chibi Lizzard uncolored Model",
         descripcion: "Modelo de lagarto hecho en tiempos de ocio en NomadSculpt, pensado principalmente como modelo de prueba para practicar y aprender modelado organico.",
