@@ -76,17 +76,21 @@ export default function App() {
           fichaRpg={PORTFOLIO_CONFIG.fichaRpg}
         />
 
-        {/* World 02: Proyectos de Programación */}
-        <World02Projects
-          proyectos={PORTFOLIO_CONFIG.proyectosProgramacion}
-          onOpenVideo={(vid) => setActiveVideo(vid)}
-        />
+        {/* World 02: Proyectos de Programación (Apagado temporalmente en portfolioConfig.ts) */}
+        {PORTFOLIO_CONFIG.seccionesVisibles?.mundo02Programacion && (
+          <World02Projects
+            proyectos={PORTFOLIO_CONFIG.proyectosProgramacion}
+            onOpenVideo={(vid) => setActiveVideo(vid)}
+          />
+        )}
 
-        {/* World 02-B: Proyecto Destacado C# Photon PUN2 */}
-        <WorldFeaturedProgramming
-          proyecto={PORTFOLIO_CONFIG.proyectoProgramacionDestacado}
-          onOpenVideo={(vid) => setActiveVideo(vid)}
-        />
+        {/* World 02-B: Proyecto Destacado C# Photon PUN2 (Apagado temporalmente en portfolioConfig.ts) */}
+        {PORTFOLIO_CONFIG.seccionesVisibles?.mundo02Destacado && PORTFOLIO_CONFIG.proyectoProgramacionDestacado && (
+          <WorldFeaturedProgramming
+            proyecto={PORTFOLIO_CONFIG.proyectoProgramacionDestacado}
+            onOpenVideo={(vid) => setActiveVideo(vid)}
+          />
+        )}
 
         {/* World 03: Modelado 3D */}
         <World03Creative3D

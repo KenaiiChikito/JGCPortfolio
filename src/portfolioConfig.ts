@@ -82,6 +82,17 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
   ],
 
   /* ==================================================================================
+     CONFIGURACIÓN DE VISIBILIDAD DE SECCIONES (ENCENDER / APAGAR MUNDOS)
+     Si en el futuro deseas reactivar el Mundo 02, simplemente cambia 'false' por 'true'.
+     ================================================================================== */
+  seccionesVisibles: {
+    // Apagado temporalmente a petición del usuario. Cambiar a true para volver a mostrarlo:
+    mundo02Programacion: false,
+    // Proyecto destacado de programación (C# Photon PUN2):
+    mundo02Destacado: true,
+  },
+
+  /* ==================================================================================
      3. MUNDO 02 — PROYECTOS DE PROGRAMACIÓN
      Enfocado estrictamente en arquitectura, código, mecánicas e ingeniería de software.
      Cada proyecto cuenta con tags técnicos, descripción y enlaces a Repositorio / Demo.

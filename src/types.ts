@@ -136,6 +136,10 @@ export interface PortfolioConfig {
   };
   bio: string[];
   stats: StatItem[];
+  seccionesVisibles?: {
+    mundo02Programacion?: boolean;
+    mundo02Destacado?: boolean;
+  };
   proyectosProgramacion: ProgrammingProject[];
   proyectoProgramacionDestacado?: FeaturedProgrammingProject;
   modelado3D: {

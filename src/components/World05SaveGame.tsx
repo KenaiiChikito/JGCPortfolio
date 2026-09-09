@@ -1,19 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { PortfolioConfig } from '../types';
 import {
   Clock,
   Download,
-  FileText,
   Mail,
   MapPin,
   QrCode,
   Save,
   Send,
-  Sparkles,
   CheckCircle,
   Copy,
-  History
+  History,
+  Lock,
+  ExternalLink,
 } from 'lucide-react';
+import { SecretQrModal } from './SecretQrModal';
 
 interface World05SaveGameProps {
   contacto: PortfolioConfig['contacto'];
@@ -23,18 +24,29 @@ interface World05SaveGameProps {
 
 export function World05SaveGame({
   contacto,
-  qrUrl: initialQrUrl,
+  qrUrl: portfolioQrUrl,
   historialActualizaciones,
 }: World05SaveGameProps) {
-  const [currentQrUrl, setCurrentQrUrl] = useState(initialQrUrl);
-  const [inputUrl, setInputUrl] = useState(initialQrUrl);
   const [copiedEmail, setCopiedEmail] = useState(false);
+  const [copiedPortfolioUrl, setCopiedPortfolioUrl] = useState(false);
+  const [showSecretModal, setShowSecretModal] = useState(false);
 
-  const handleGenerateQr = () => {
-    if (inputUrl.trim()) {
-      setCurrentQrUrl(inputUrl.trim());
+  // Keyboard shortcut (Ctrl+Q or Alt+Q) or URL hash (#qr) to open secret QR generator
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.altKey || e.metaKey) && (e.key === 'q' || e.key === 'Q')) {
+        e.preventDefault();
+        setShowSecretModal((prev) => !prev);
+      }
+    };
+
+    if (window.location.hash === '#qr' || window.location.search.includes('qr=')) {
+      setShowSecretModal(true);
     }
-  };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(contacto.email);
@@ -42,8 +54,15 @@ export function World05SaveGame({
     setTimeout(() => setCopiedEmail(false), 2400);
   };
 
-  const encodedUrl = encodeURIComponent(currentQrUrl);
-  const qrImageSrc = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=8&color=14-0c-07&bgcolor=fa-ed-e5&data=${encodedUrl}`;
+  const handleCopyPortfolioUrl = () => {
+    navigator.clipboard.writeText(portfolioQrUrl);
+    setCopiedPortfolioUrl(true);
+    setTimeout(() => setCopiedPortfolioUrl(false), 2400);
+  };
+
+  // Static QR Code for this portfolio
+  const encodedPortfolioUrl = encodeURIComponent(portfolioQrUrl);
+  const qrImageSrc = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=8&color=14-0c-07&bgcolor=fa-ed-e5&data=${encodedPortfolioUrl}`;
 
   return (
     <section id="contacto" className="relative z-10 py-24 md:py-32 border-t border-[rgba(224,122,63,0.2)]">
@@ -70,10 +89,14 @@ export function World05SaveGame({
             {/* Left: Contact Info & Action CTAs */}
             <div className="space-y-8">
               <div className="space-y-3">
-                <div className="inline-flex items-center gap-2 font-mono text-xs text-[#e8a038] bg-[#261910] px-3 py-1 rounded-full border border-[rgba(224,122,63,0.25)]">
+                <button
+                  onClick={() => setShowSecretModal(true)}
+                  className="inline-flex items-center gap-2 font-mono text-xs text-[#e8a038] hover:text-[#f59e0b] bg-[#261910] hover:bg-[#342217] px-3 py-1 rounded-full border border-[rgba(224,122,63,0.25)] transition-all cursor-pointer text-left"
+                  title="Save Point Activo (Atajo: Ctrl + Q)"
+                >
                   <Save className="w-3.5 h-3.5 text-[#e07a3f]" />
                   <span>SAVE POINT ACTIVO · SLOT #1</span>
-                </div>
+                </button>
                 <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-[#faede5]">
                   ¿Continuamos la historia?
                 </h3>
@@ -131,15 +154,15 @@ export function World05SaveGame({
               </div>
             </div>
 
-            {/* Right: QR Code Box */}
+            {/* Right: Static Portfolio QR Code Box (Public) */}
             <div className="bg-[#261910] border border-[rgba(224,122,63,0.25)] rounded-2xl p-6 sm:p-8 flex flex-col items-center text-center shadow-lg">
               <div className="font-mono text-xs text-[#e8a038] font-bold tracking-widest uppercase mb-4 flex items-center gap-2">
                 <QrCode className="w-4 h-4 text-[#e07a3f]" />
                 ESCANEA PARA COMPARTIR PARTIDA
               </div>
 
-              {/* QR Image Container */}
-              <div className="p-3 bg-[#faede5] rounded-2xl shadow-md mb-4 border border-[#e8a038]/40">
+              {/* QR Image Container (Static to Portfolio) */}
+              <div className="p-3 bg-[#faede5] rounded-2xl shadow-md mb-4 border border-[#e8a038]/40 transition-transform hover:scale-105 duration-200">
                 <img
                   src={qrImageSrc}
                   alt="Código QR del portafolio"
@@ -149,25 +172,51 @@ export function World05SaveGame({
                 />
               </div>
 
-              <p className="font-mono text-[11px] text-[#bda89b] max-w-xs mb-4">
+              <p className="font-mono text-[11px] text-[#bda89b] max-w-xs mb-4 leading-relaxed">
                 Apunta con la cámara de tu móvil para abrir este portafolio en cualquier dispositivo.
               </p>
 
-              {/* Live QR generator input */}
-              <div className="w-full flex gap-2">
-                <input
-                  type="text"
-                  value={inputUrl}
-                  onChange={(e) => setInputUrl(e.target.value)}
-                  placeholder="Pega aquí la URL de tu portafolio"
-                  className="flex-1 bg-[#140c07] border border-[rgba(224,122,63,0.25)] focus:border-[#e8a038] rounded-xl px-3 py-2 text-xs font-mono text-[#faede5] focus:outline-none"
-                />
+              {/* Copy link button for visitors */}
+              <div className="w-full flex flex-col gap-2">
                 <button
-                  onClick={handleGenerateQr}
-                  className="bg-[#e07a3f] hover:bg-[#f08b50] text-[#140c07] px-3 py-2 rounded-xl font-mono text-xs font-bold transition-colors shrink-0"
+                  onClick={handleCopyPortfolioUrl}
+                  className="w-full bg-[#140c07] hover:bg-[#342217] border border-[rgba(224,122,63,0.3)] hover:border-[#e8a038] text-[#faede5] hover:text-[#e8a038] px-3.5 py-2.5 rounded-xl font-mono text-xs font-medium transition-all flex items-center justify-center gap-2"
                 >
-                  Generar
+                  {copiedPortfolioUrl ? (
+                    <>
+                      <CheckCircle className="w-4 h-4 text-[#85994b]" />
+                      <span className="text-[#85994b] font-bold">¡Enlace Copiado!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-4 h-4 text-[#e07a3f]" />
+                      <span>Copiar Enlace del Portafolio</span>
+                    </>
+                  )}
                 </button>
+
+                {/* Discreet footer row with subtle creator lock button */}
+                <div className="flex items-center justify-between pt-2 px-1 text-[10px] font-mono text-[#7f6a5e]">
+                  <a
+                    href={portfolioQrUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="truncate max-w-[190px] hover:text-[#e8a038] transition-colors flex items-center gap-1"
+                  >
+                    <span>{portfolioQrUrl.replace('https://', '')}</span>
+                    <ExternalLink className="w-2.5 h-2.5 shrink-0 opacity-60" />
+                  </a>
+
+                  {/* Secret button camouflaged as a subtle lock icon */}
+                  <button
+                    onClick={() => setShowSecretModal(true)}
+                    className="p-1 rounded text-[#7f6a5e]/50 hover:text-[#e8a038] hover:bg-[#140c07] transition-colors"
+                    title="Herramienta privada de Códigos QR (Atajo: Ctrl + Q)"
+                    aria-label="Abrir generador privado de QR"
+                  >
+                    <Lock className="w-3.5 h-3.5" />
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -175,7 +224,7 @@ export function World05SaveGame({
         </div>
 
         {/* =========================================================================
-            NUEVA SECCIÓN REQUERIDA: HISTORIAL DE ACTUALIZACIONES (SAVE LOGS)
+            HISTORIAL DE ACTUALIZACIONES (SAVE LOGS)
             ========================================================================= */}
         <div className="bg-[#1c120b] border border-[rgba(224,122,63,0.25)] rounded-3xl p-7 sm:p-10 shadow-xl space-y-8">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[rgba(224,122,63,0.2)]">
@@ -196,7 +245,6 @@ export function World05SaveGame({
 
           <div className="space-y-4">
             {historialActualizaciones.map((update, idx) => {
-              // Styling for different update types
               const badgeStyles = {
                 nuevo: 'bg-[#e07a3f]/15 text-[#e07a3f] border-[#e07a3f]/40',
                 mejora: 'bg-[#85994b]/15 text-[#85994b] border-[#85994b]/40',
@@ -236,6 +284,13 @@ export function World05SaveGame({
         </div>
 
       </div>
+
+      {/* Secret Creator QR Generator Modal (Only accessible by you) */}
+      <SecretQrModal
+        isOpen={showSecretModal}
+        onClose={() => setShowSecretModal(false)}
+        defaultUrl={portfolioQrUrl}
+      />
     </section>
   );
 }

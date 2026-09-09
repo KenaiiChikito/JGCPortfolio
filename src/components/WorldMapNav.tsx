@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { PORTFOLIO_CONFIG } from '../portfolioConfig';
 
 export interface WorldSection {
   id: string;
@@ -7,7 +8,7 @@ export interface WorldSection {
   shortLabel: string;
 }
 
-export const WORLD_SECTIONS: WorldSection[] = [
+export const ALL_WORLD_SECTIONS: WorldSection[] = [
   { id: 'inicio', number: '00', label: 'PRESS START', shortLabel: 'INICIO' },
   { id: 'about', number: '01', label: 'SOBRE MÍ', shortLabel: 'MUNDO 01' },
   { id: 'proyectos', number: '02', label: 'PROGRAMACIÓN', shortLabel: 'MUNDO 02' },
@@ -17,6 +18,16 @@ export const WORLD_SECTIONS: WorldSection[] = [
   { id: 'skills', number: '04', label: 'INVENTARIO', shortLabel: 'MUNDO 04' },
   { id: 'contacto', number: '05', label: 'GUARDAR PARTIDA', shortLabel: 'MUNDO 05' },
 ];
+
+export const WORLD_SECTIONS: WorldSection[] = ALL_WORLD_SECTIONS.filter((sec) => {
+  if (sec.id === 'proyectos' && PORTFOLIO_CONFIG.seccionesVisibles?.mundo02Programacion === false) {
+    return false;
+  }
+  if (sec.id === 'prog-destacado' && PORTFOLIO_CONFIG.seccionesVisibles?.mundo02Destacado === false) {
+    return false;
+  }
+  return true;
+});
 
 interface WorldMapNavProps {
   activeSection: string;
