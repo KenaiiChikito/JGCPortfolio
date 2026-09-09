@@ -1,6 +1,6 @@
 {
   "name": "Portafolio Game Developer & 3D",
-  "description": "Portafolio interactivo con diseño de niveles estilo RPG en paleta otoñal, proyectos de programación, galería de modelado 3D, inventario y pantalla de guardado.",
+  "description": "Portafolio creativo y pintoresco de Juan Gómez, desarrollador de videojuegos (C#, Unity, Photon PUN2) y artista 3D (Hard-Surface y modelado orgánico).",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

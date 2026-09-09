@@ -1,30 +1,13 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: 'Milky Vintage';
-  src: url('./assets/fonts/MilkyVintage-Regular.ttf') format('truetype'),
-       url('/fonts/MilkyVintage-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
 @layer base {
   :root {
     --bg: #140c07;
-    --bg-elevated: #1c120b;
-    --surface: #261910;
-    --surface-2: #342217;
-    --line: rgba(224, 122, 63, 0.22);
-    --accent: #e07a3f;
-    --accent-hover: #f08b50;
-    --accent-soft: rgba(224, 122, 63, 0.15);
-    --ocre: #e8a038;
-    --ocre-soft: rgba(232, 160, 56, 0.18);
-    --terracotta: #c2522b;
-    --amber: #f59e0b;
-    --moss: #85994b;
-    --moss-soft: rgba(133, 153, 75, 0.18);
+    --bg-card: #1c120b;
+    --border: rgba(224, 122, 63, 0.25);
+    --accent: #e8a038;
+    --accent-orange: #e07a3f;
+    --accent-green: #85994b;
     --text: #faede5;
     --text-muted: #bda89b;
     --text-dim: #7f6a5e;
@@ -32,145 +15,6 @@
     --font-body: 'Inter', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
     --font-pixel: 'Press Start 2P', monospace;
-  }
-
-  /* 1. Modo Milky Vintage (Sign Studio) */
-  .theme-milky {
-    --font-display: 'Milky Vintage', cursive, serif;
-    --font-body: 'Milky Vintage', cursive, serif;
-    --font-pixel: 'Milky Vintage', cursive, serif;
-  }
-
-  .theme-milky,
-  .theme-milky h1,
-  .theme-milky h2,
-  .theme-milky h3,
-  .theme-milky h4,
-  .theme-milky h5,
-  .theme-milky h6,
-  .theme-milky p,
-  .theme-milky span,
-  .theme-milky a,
-  .theme-milky button,
-  .theme-milky label,
-  .theme-milky input,
-  .theme-milky textarea,
-  .theme-milky .font-display,
-  .theme-milky .font-body,
-  .theme-milky .font-pixel {
-    font-family: 'Milky Vintage', cursive, serif;
-    letter-spacing: 0.015em;
-  }
-
-  /* 2. Sugerencia A: Modo Oxanium (Modelador 3D / Wireframe / Sci-Fi Game Dev) */
-  .theme-oxanium {
-    --font-display: 'Oxanium', sans-serif;
-    --font-body: 'Oxanium', sans-serif;
-    --font-pixel: 'Oxanium', sans-serif;
-  }
-
-  .theme-oxanium,
-  .theme-oxanium h1,
-  .theme-oxanium h2,
-  .theme-oxanium h3,
-  .theme-oxanium h4,
-  .theme-oxanium h5,
-  .theme-oxanium h6,
-  .theme-oxanium p,
-  .theme-oxanium span,
-  .theme-oxanium a,
-  .theme-oxanium button,
-  .theme-oxanium label,
-  .theme-oxanium input,
-  .theme-oxanium textarea,
-  .theme-oxanium .font-display,
-  .theme-oxanium .font-body,
-  .theme-oxanium .font-pixel {
-    font-family: 'Oxanium', sans-serif;
-    letter-spacing: 0.01em;
-  }
-
-  /* 3. Sugerencia B: Modo Pixelify Sans (16-Bit JRPG Retrogaming - Ultra legible con acentos) */
-  .theme-pixelify {
-    --font-display: 'Pixelify Sans', cursive, sans-serif;
-    --font-body: 'Pixelify Sans', cursive, sans-serif;
-    --font-pixel: 'Pixelify Sans', cursive, sans-serif;
-  }
-
-  .theme-pixelify,
-  .theme-pixelify h1,
-  .theme-pixelify h2,
-  .theme-pixelify h3,
-  .theme-pixelify h4,
-  .theme-pixelify h5,
-  .theme-pixelify h6,
-  .theme-pixelify p,
-  .theme-pixelify span,
-  .theme-pixelify a,
-  .theme-pixelify button,
-  .theme-pixelify label,
-  .theme-pixelify input,
-  .theme-pixelify textarea,
-  .theme-pixelify .font-display,
-  .theme-pixelify .font-body,
-  .theme-pixelify .font-pixel {
-    font-family: 'Pixelify Sans', cursive, sans-serif;
-    letter-spacing: 0.025em;
-  }
-
-  /* 4. Sugerencia C: Modo Space Mono (Terminal Retro 70s / Programador Vintage) */
-  .theme-space-mono {
-    --font-display: 'Space Mono', monospace;
-    --font-body: 'Space Mono', monospace;
-    --font-pixel: 'Space Mono', monospace;
-  }
-
-  .theme-space-mono,
-  .theme-space-mono h1,
-  .theme-space-mono h2,
-  .theme-space-mono h3,
-  .theme-space-mono h4,
-  .theme-space-mono h5,
-  .theme-space-mono h6,
-  .theme-space-mono p,
-  .theme-space-mono span,
-  .theme-space-mono a,
-  .theme-space-mono button,
-  .theme-space-mono label,
-  .theme-space-mono input,
-  .theme-space-mono textarea,
-  .theme-space-mono .font-display,
-  .theme-space-mono .font-body,
-  .theme-space-mono .font-pixel {
-    font-family: 'Space Mono', monospace;
-    letter-spacing: -0.01em;
-  }
-
-  /* Preserve monospace for code and code tags */
-  .theme-milky pre,
-  .theme-milky code,
-  .theme-oxanium pre,
-  .theme-oxanium code,
-  .theme-pixelify pre,
-  .theme-pixelify code,
-  .theme-space-mono pre,
-  .theme-space-mono code {
-    font-family: 'JetBrains Mono', monospace !important;
-  }
-
-  /* Efecto Vintage CRT & Monitor Analógico cálido */
-  .effect-vintage-crt {
-    position: relative;
-  }
-
-  .effect-vintage-crt::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 35;
-    background: radial-gradient(circle at center, transparent 65%, rgba(10, 5, 2, 0.42) 100%),
-                repeating-linear-gradient(180deg, rgba(20, 12, 7, 0.2) 0px, rgba(20, 12, 7, 0.2) 2px, transparent 2px, transparent 4px);
   }
 
   html {
@@ -243,9 +87,9 @@
   background: #140c07;
 }
 ::-webkit-scrollbar-thumb {
-  background: #342217;
+  background: #2b180d;
   border-radius: 4px;
-  border: 1px solid rgba(224, 122, 63, 0.2);
+  border: 1px solid rgba(224, 122, 63, 0.3);
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #e07a3f;
