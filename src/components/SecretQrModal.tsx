@@ -250,7 +250,7 @@ export function SecretQrModal({ isOpen, onClose, defaultUrl }: SecretQrModalProp
             </div>
 
             <p className="text-sm font-body text-[#bda89b] leading-relaxed">
-              Esta herramienta de generación de Códigos QR es estrictamente privada y no está disponible para visitantes. Introduce tu clave de administrador configurada en <code className="text-[#e8a038] bg-[#140c07] px-1.5 py-0.5 rounded border border-[#e8a038]/30">portfolioConfig.ts</code> para desbloquearla.
+              Esta herramienta de generación de Códigos QR es estrictamente privada y de uso exclusivo para el autor del portafolio. Introduce tu clave de acceso para desbloquearla.
             </p>
 
             {/* Password Form */}
@@ -270,7 +270,7 @@ export function SecretQrModal({ isOpen, onClose, defaultUrl }: SecretQrModalProp
                       setPasswordInput(e.target.value);
                       if (authError) setAuthError(null);
                     }}
-                    placeholder="Escribe tu clave de administrador..."
+                    placeholder="Introduce tu clave de administrador..."
                     autoFocus
                     className="w-full bg-[#140c07] border border-[rgba(224,122,63,0.3)] focus:border-[#e8a038] rounded-xl pl-10 pr-12 py-3 text-sm font-mono text-[#faede5] placeholder-[#7f6a5e] focus:outline-none transition-all"
                   />
@@ -291,27 +291,21 @@ export function SecretQrModal({ isOpen, onClose, defaultUrl }: SecretQrModalProp
                 </div>
               )}
 
-              <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
-                <div className="text-[11px] font-mono text-[#7f6a5e]">
-                  Pista por defecto: <code className="text-[#e8a038]">{adminPassword}</code> (Modificable en tu código)
-                </div>
-
-                <div className="flex items-center gap-2.5">
-                  <button
-                    type="button"
-                    onClick={onClose}
-                    className="px-4 py-2.5 rounded-xl bg-[#261910] hover:bg-[#342217] text-[#bda89b] text-xs font-mono border border-[rgba(224,122,63,0.2)] transition-colors"
-                  >
-                    Cancelar
-                  </button>
-                  <button
-                    type="submit"
-                    className="px-6 py-2.5 rounded-xl bg-[#e8a038] hover:bg-[#f59e0b] text-[#140c07] text-xs font-mono font-bold shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center gap-2"
-                  >
-                    <Unlock className="w-4 h-4" />
-                    <span>Desbloquear</span>
-                  </button>
-                </div>
+              <div className="flex items-center justify-end gap-2.5 pt-2">
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="px-4 py-2.5 rounded-xl bg-[#261910] hover:bg-[#342217] text-[#bda89b] text-xs font-mono border border-[rgba(224,122,63,0.2)] transition-colors"
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="submit"
+                  className="px-6 py-2.5 rounded-xl bg-[#e8a038] hover:bg-[#f59e0b] text-[#140c07] text-xs font-mono font-bold shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center gap-2"
+                >
+                  <Unlock className="w-4 h-4" />
+                  <span>Desbloquear</span>
+                </button>
               </div>
             </form>
           </div>
@@ -466,8 +460,9 @@ export function SecretQrModal({ isOpen, onClose, defaultUrl }: SecretQrModalProp
 
             {/* Action buttons */}
             <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
-              <div className="text-[11px] font-mono text-[#7f6a5e]">
-                💡 Puedes cambiar tu clave en <span className="text-[#e8a038]">portfolioConfig.ts</span>
+              <div className="text-[11px] font-mono text-[#85994b] flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#85994b]" />
+                <span>Panel privado activo</span>
               </div>
 
               <div className="flex items-center gap-3">
