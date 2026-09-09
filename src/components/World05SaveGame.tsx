@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { PortfolioConfig } from '../types';
 import {
   Clock,
@@ -11,10 +11,8 @@ import {
   CheckCircle,
   Copy,
   History,
-  Lock,
   ExternalLink,
 } from 'lucide-react';
-import { SecretQrModal } from './SecretQrModal';
 
 interface World05SaveGameProps {
   contacto: PortfolioConfig['contacto'];
@@ -29,24 +27,6 @@ export function World05SaveGame({
 }: World05SaveGameProps) {
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPortfolioUrl, setCopiedPortfolioUrl] = useState(false);
-  const [showSecretModal, setShowSecretModal] = useState(false);
-
-  // Keyboard shortcut (Ctrl+Q or Alt+Q) or URL hash (#qr) to open secret QR generator
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.altKey || e.metaKey) && (e.key === 'q' || e.key === 'Q')) {
-        e.preventDefault();
-        setShowSecretModal((prev) => !prev);
-      }
-    };
-
-    if (window.location.hash === '#qr' || window.location.search.includes('qr=')) {
-      setShowSecretModal(true);
-    }
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(contacto.email);
@@ -89,14 +69,10 @@ export function World05SaveGame({
             {/* Left: Contact Info & Action CTAs */}
             <div className="space-y-8">
               <div className="space-y-3">
-                <button
-                  onClick={() => setShowSecretModal(true)}
-                  className="inline-flex items-center gap-2 font-mono text-xs text-[#e8a038] hover:text-[#f59e0b] bg-[#261910] hover:bg-[#342217] px-3 py-1 rounded-full border border-[rgba(224,122,63,0.25)] transition-all cursor-pointer text-left"
-                  title="Save Point Activo (Atajo: Ctrl + Q)"
-                >
+                <div className="inline-flex items-center gap-2 font-mono text-xs text-[#e8a038] bg-[#261910] px-3 py-1 rounded-full border border-[rgba(224,122,63,0.25)]">
                   <Save className="w-3.5 h-3.5 text-[#e07a3f]" />
                   <span>SAVE POINT ACTIVO · SLOT #1</span>
-                </button>
+                </div>
                 <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-[#faede5]">
                   ¿Continuamos la historia?
                 </h3>
@@ -195,27 +171,17 @@ export function World05SaveGame({
                   )}
                 </button>
 
-                {/* Discreet footer row with subtle creator lock button */}
-                <div className="flex items-center justify-between pt-2 px-1 text-[10px] font-mono text-[#7f6a5e]">
+                {/* Clean URL link for visitors */}
+                <div className="flex items-center justify-center pt-2 px-1 text-[10px] font-mono text-[#7f6a5e]">
                   <a
                     href={portfolioQrUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="truncate max-w-[190px] hover:text-[#e8a038] transition-colors flex items-center gap-1"
+                    className="truncate max-w-[220px] hover:text-[#e8a038] transition-colors flex items-center gap-1.5"
                   >
                     <span>{portfolioQrUrl.replace('https://', '')}</span>
-                    <ExternalLink className="w-2.5 h-2.5 shrink-0 opacity-60" />
+                    <ExternalLink className="w-3 h-3 shrink-0 opacity-60" />
                   </a>
-
-                  {/* Secret button camouflaged as a subtle lock icon */}
-                  <button
-                    onClick={() => setShowSecretModal(true)}
-                    className="p-1 rounded text-[#7f6a5e]/50 hover:text-[#e8a038] hover:bg-[#140c07] transition-colors"
-                    title="Herramienta privada de Códigos QR (Atajo: Ctrl + Q)"
-                    aria-label="Abrir generador privado de QR"
-                  >
-                    <Lock className="w-3.5 h-3.5" />
-                  </button>
                 </div>
               </div>
             </div>
@@ -284,13 +250,6 @@ export function World05SaveGame({
         </div>
 
       </div>
-
-      {/* Secret Creator QR Generator Modal (Only accessible by you) */}
-      <SecretQrModal
-        isOpen={showSecretModal}
-        onClose={() => setShowSecretModal(false)}
-        defaultUrl={portfolioQrUrl}
-      />
     </section>
   );
 }

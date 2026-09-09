@@ -456,6 +456,18 @@ public class GameManager : MonoBehaviourPunCallbacks
   // URL para el código QR interactivo de tu portafolio
   qrUrl: "https://kenaiichikito.github.io/PortfolioGit/",
 
+  /* ==================================================================================
+     CONFIGURACIÓN DE ACCESO PRIVADO / ADMINISTRADOR (SOLO PARA TI)
+     Configura aquí tu clave personal para desbloquear el generador de QR privado.
+     Puedes cambiar esta clave en cualquier momento.
+     ================================================================================== */
+  adminConfig: {
+    // Tu clave maestra secreta (Cámbiala cuando quieras por la que prefieras):
+    claveAcceso: "152436JG",
+    // Tu usuario oficial de GitHub para validar autoría:
+    githubUsername: "KenaiIchikito",
+  },
+
   // NUEVA SECCIÓN: Registro de guardado / Historial de actualizaciones (Changelog de parches)
   historialActualizaciones: [
     {

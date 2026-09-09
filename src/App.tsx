@@ -12,11 +12,56 @@ import { World04Skills } from './components/World04Skills';
 import { World05SaveGame } from './components/World05SaveGame';
 import { VideoModal } from './components/VideoModal';
 import { AchievementToast } from './components/AchievementToast';
+import { SecretQrModal } from './components/SecretQrModal';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('inicio');
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [showAdminQrModal, setShowAdminQrModal] = useState(false);
+  const [footerClicks, setFooterClicks] = useState(0);
+
+  // Global listener for secret Admin shortcuts (Ctrl+Shift+Q, Ctrl+Alt+A, Ctrl+Q) and URL triggers
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Secret Admin Key combinations
+      if ((e.ctrlKey || e.metaKey) && (e.shiftKey || e.altKey) && (e.key === 'q' || e.key === 'Q')) {
+        e.preventDefault();
+        setShowAdminQrModal((prev) => !prev);
+      } else if ((e.ctrlKey || e.metaKey) && (e.altKey) && (e.key === 'a' || e.key === 'A')) {
+        e.preventDefault();
+        setShowAdminQrModal((prev) => !prev);
+      } else if ((e.ctrlKey || e.metaKey) && (e.key === 'q' || e.key === 'Q')) {
+        e.preventDefault();
+        setShowAdminQrModal((prev) => !prev);
+      }
+    };
+
+    // Check if visiting with #admin or #qr or ?admin in the URL
+    if (
+      window.location.hash === '#admin' ||
+      window.location.hash === '#qr' ||
+      window.location.search.includes('admin')
+    ) {
+      setShowAdminQrModal(true);
+    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  // Stealth Easter Egg: clicking 5 times rapidly on the footer copyright unlocks the Admin Terminal
+  const handleFooterSecretClick = () => {
+    setFooterClicks((prev) => {
+      const next = prev + 1;
+      if (next >= 5) {
+        setShowAdminQrModal(true);
+        return 0;
+      }
+      return next;
+    });
+    setTimeout(() => setFooterClicks(0), 3000);
+  };
 
   // Active section tracker on scroll
   useEffect(() => {
@@ -118,7 +163,13 @@ export default function App() {
       {/* Footer */}
       <footer className="relative z-10 border-t border-[rgba(224,122,63,0.2)] bg-[#0d0704] py-8 text-center text-xs font-mono text-[#7f6a5e]">
         <div className="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <span>{PORTFOLIO_CONFIG.footer}</span>
+          <span
+            onClick={handleFooterSecretClick}
+            className="cursor-default select-none transition-colors hover:text-[#bda89b]"
+            title={footerClicks > 0 ? `Verificando identidad... (${footerClicks}/5)` : undefined}
+          >
+            {PORTFOLIO_CONFIG.footer}
+          </span>
           <button
             onClick={() => scrollTo('inicio')}
             className="text-[#e8a038] hover:text-[#faede5] transition-colors"
@@ -137,6 +188,13 @@ export default function App() {
       <AchievementToast
         message={toastMessage}
         onClose={() => setToastMessage(null)}
+      />
+
+      {/* Private Creator QR Generator (Gated by Admin Password in portfolioConfig.ts) */}
+      <SecretQrModal
+        isOpen={showAdminQrModal}
+        onClose={() => setShowAdminQrModal(false)}
+        defaultUrl={PORTFOLIO_CONFIG.qrUrl}
       />
     </div>
   );

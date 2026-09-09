@@ -161,6 +161,10 @@ export interface PortfolioConfig {
     cvUrl: string;
   };
   qrUrl: string;
+  adminConfig?: {
+    claveAcceso: string;
+    githubUsername: string;
+  };
   historialActualizaciones: HistorialUpdate[];
   footer: string;
 }
