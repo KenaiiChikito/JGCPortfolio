@@ -454,7 +454,7 @@ public class GameManager : MonoBehaviourPunCallbacks
   },
 
   // URL para el código QR interactivo de tu portafolio
-  qrUrl: "https://kenaiichikito.github.io/PortfolioGit/",
+  qrUrl: "https://kenaiichikito.github.io/JGCPortfolio/",
 
   /* ==================================================================================
      CONFIGURACIÓN DE ACCESO PRIVADO / ADMINISTRADOR (SOLO PARA TI)
