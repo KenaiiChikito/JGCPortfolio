@@ -1,16 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect, MouseEvent } from 'react';
 import { FeaturedCreativeProject } from '../types';
 import { PlatformIcon } from './PlatformIcon';
 import {
-  Box,
   ExternalLink,
-  Layers,
   Sparkles,
   Maximize2,
-  Cpu,
   Compass,
   CheckCircle2,
-  Eye,
+  ChevronLeft,
+  ChevronRight,
+  Images,
 } from 'lucide-react';
 
 interface WorldFeaturedCreativeProps {
@@ -18,14 +17,49 @@ interface WorldFeaturedCreativeProps {
 }
 
 export function WorldFeaturedCreative({ proyecto }: WorldFeaturedCreativeProps) {
-  const [showWireframe, setShowWireframe] = useState(false);
   const [fullscreenModal, setFullscreenModal] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   if (!proyecto) return null;
 
-  const currentImage = showWireframe && proyecto.imagenSecundaria
-    ? proyecto.imagenSecundaria
-    : proyecto.imagenPrincipal;
+  // Lista de imágenes para la ruleta (soporta array 'imagenes' o 'imagenPrincipal' + 'imagenSecundaria')
+  const imageList: string[] = (
+    proyecto.imagenes && proyecto.imagenes.length > 0
+      ? proyecto.imagenes
+      : [proyecto.imagenPrincipal, proyecto.imagenSecundaria].filter(
+          (img): img is string => typeof img === 'string' && img.trim().length > 0
+        )
+  );
+
+  const totalImages = imageList.length;
+  const safeIndex = totalImages > 0 ? ((currentIndex % totalImages) + totalImages) % totalImages : 0;
+  const currentImage = imageList[safeIndex] || proyecto.imagenPrincipal || '';
+
+  const handlePrev = (e?: MouseEvent) => {
+    e?.stopPropagation();
+    if (totalImages <= 1) return;
+    setCurrentIndex((prev) => (prev - 1 + totalImages) % totalImages);
+  };
+
+  const handleNext = (e?: MouseEvent) => {
+    e?.stopPropagation();
+    if (totalImages <= 1) return;
+    setCurrentIndex((prev) => (prev + 1) % totalImages);
+  };
+
+  // Navegación con teclado en el modal o cuando esté activo
+  useEffect(() => {
+    if (!fullscreenModal) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') handlePrev();
+      if (e.key === 'ArrowRight') handleNext();
+      if (e.key === 'Escape') setFullscreenModal(false);
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [fullscreenModal, totalImages]);
 
   return (
     <section
@@ -82,45 +116,94 @@ export function WorldFeaturedCreative({ proyecto }: WorldFeaturedCreativeProps) 
 
           {/* Grid Layout: Visual Showcase + Technical Breakdown */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
-            {/* Left side: Big Stage Render (7 cols) */}
+            {/* Left side: Big Stage Render + Interactive Image Carousel (7 cols) */}
             <div className="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-[rgba(224,122,63,0.2)] bg-[#140c07]/80">
               <div>
                 {/* Visual Viewport */}
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-[rgba(224,122,63,0.3)] bg-[#0f0804] group shadow-inner">
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-[rgba(224,122,63,0.3)] bg-[#0f0804] group shadow-inner flex items-center justify-center">
                   <img
+                    key={currentImage}
                     src={currentImage}
-                    alt={proyecto.titulo}
-                    className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                    alt={`${proyecto.titulo} - Vista ${safeIndex + 1}`}
+                    className="w-full h-full object-contain transition-all duration-300 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#140c07] via-transparent to-transparent opacity-60" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#140c07] via-transparent to-transparent opacity-60 pointer-events-none" />
 
                   {/* Expand Modal button */}
                   <button
                     onClick={() => setFullscreenModal(true)}
-                    className="absolute top-3 right-3 p-2.5 rounded-xl bg-[#140c07]/80 hover:bg-[#e8a038] text-[#bda89b] hover:text-[#140c07] border border-[rgba(224,122,63,0.3)] transition-all shadow-md"
+                    className="absolute top-3 right-3 p-2.5 rounded-xl bg-[#140c07]/80 hover:bg-[#e8a038] text-[#bda89b] hover:text-[#140c07] border border-[rgba(224,122,63,0.3)] transition-all shadow-md z-10"
                     title="Ver en pantalla completa"
                   >
                     <Maximize2 className="w-4 h-4" />
                   </button>
 
-                  {/* Wireframe / Angle Toggle if second image is provided */}
-                  {proyecto.imagenSecundaria && (
-                    <button
-                      onClick={() => setShowWireframe(!showWireframe)}
-                      className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 font-mono text-xs px-3 py-1.5 rounded-lg bg-[#140c07]/90 text-[#e8a038] border border-[#e8a038]/40 hover:bg-[#e8a038] hover:text-[#140c07] transition-all shadow-md"
-                    >
-                      <Eye className="w-3.5 h-3.5" />
-                      <span>{showWireframe ? 'Ver Render' : 'Ver Vista B'}</span>
-                    </button>
+                  {/* Botones de navegación de la ruleta (Anterior / Siguiente) */}
+                  {totalImages > 1 && (
+                    <>
+                      <button
+                        onClick={handlePrev}
+                        aria-label="Imagen anterior"
+                        className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-[#140c07]/85 hover:bg-[#e8a038] text-[#faede5] hover:text-[#140c07] border border-[rgba(224,122,63,0.4)] hover:border-[#e8a038] transition-all shadow-xl z-10 hover:scale-110 active:scale-95"
+                        title="Ver imagen anterior"
+                      >
+                        <ChevronLeft className="w-5 h-5" />
+                      </button>
+
+                      <button
+                        onClick={handleNext}
+                        aria-label="Siguiente imagen"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-[#140c07]/85 hover:bg-[#e8a038] text-[#faede5] hover:text-[#140c07] border border-[rgba(224,122,63,0.4)] hover:border-[#e8a038] transition-all shadow-xl z-10 hover:scale-110 active:scale-95"
+                        title="Ver siguiente imagen"
+                      >
+                        <ChevronRight className="w-5 h-5" />
+                      </button>
+                    </>
                   )}
 
-                  {/* Bottom indicator badge */}
-                  <div className="absolute bottom-3 left-3 flex items-center gap-2">
-                    <span className="font-mono text-[11px] font-bold uppercase tracking-wider bg-[#140c07]/90 text-[#85994b] border border-[#85994b]/40 px-2.5 py-1 rounded-md">
+                  {/* Bottom indicator badge: estilo + contador ruleta */}
+                  <div className="absolute bottom-3 left-3 flex items-center gap-2 z-10">
+                    <span className="font-mono text-[11px] font-bold uppercase tracking-wider bg-[#140c07]/90 text-[#85994b] border border-[#85994b]/40 px-2.5 py-1 rounded-md shadow-sm">
                       ESTILIZADO · GAME READY
                     </span>
+                    {totalImages > 1 && (
+                      <span className="font-mono text-[11px] font-bold bg-[#140c07]/90 text-[#e8a038] border border-[#e8a038]/40 px-2.5 py-1 rounded-md shadow-sm flex items-center gap-1.5">
+                        <Images className="w-3 h-3" />
+                        <span>{safeIndex + 1} / {totalImages}</span>
+                      </span>
+                    )}
                   </div>
                 </div>
+
+                {/* Ruleta de Miniaturas Interactivas (si hay más de 1 imagen) */}
+                {totalImages > 1 && (
+                  <div className="mt-3 flex items-center gap-2.5 overflow-x-auto pb-1 scrollbar-thin">
+                    {imageList.map((imgUrl, idx) => {
+                      const isActive = idx === safeIndex;
+                      return (
+                        <button
+                          key={idx}
+                          onClick={() => setCurrentIndex(idx)}
+                          className={`relative w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border-2 transition-all flex-shrink-0 bg-[#0f0804] ${
+                            isActive
+                              ? 'border-[#e8a038] ring-2 ring-[#e8a038]/40 scale-105 shadow-[0_0_12px_rgba(232,160,56,0.5)]'
+                              : 'border-[rgba(224,122,63,0.25)] opacity-60 hover:opacity-100 hover:border-[#e07a3f]'
+                          }`}
+                          title={`Ver imagen ${idx + 1}`}
+                        >
+                          <img
+                            src={imgUrl}
+                            alt={`Miniatura ${idx + 1}`}
+                            className="w-full h-full object-cover"
+                          />
+                          <span className="absolute bottom-0 right-0 font-mono text-[9px] font-bold px-1 rounded-tl bg-[#140c07]/90 text-[#faede5]">
+                            {idx + 1}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
 
                 {/* Software Badges */}
                 <div className="mt-4 flex flex-wrap items-center gap-2">
@@ -227,7 +310,7 @@ export function WorldFeaturedCreative({ proyecto }: WorldFeaturedCreativeProps) 
         </div>
       </div>
 
-      {/* Fullscreen Lightbox Modal */}
+      {/* Fullscreen Lightbox Modal con Ruleta */}
       {fullscreenModal && (
         <div
           role="dialog"
@@ -235,23 +318,73 @@ export function WorldFeaturedCreative({ proyecto }: WorldFeaturedCreativeProps) 
           className="fixed inset-0 z-50 bg-[#0c0704]/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-8"
           onClick={() => setFullscreenModal(false)}
         >
-          <div className="relative max-w-5xl w-full bg-[#1c120b] border border-[#e8a038]/40 rounded-2xl overflow-hidden shadow-2xl p-4 flex flex-col">
+          <div
+            className="relative max-w-5xl w-full bg-[#1c120b] border border-[#e8a038]/40 rounded-2xl overflow-hidden shadow-2xl p-4 flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="flex justify-between items-center mb-3 px-2">
-              <span className="font-display font-bold text-[#faede5]">{proyecto.titulo}</span>
+              <div className="flex items-center gap-3">
+                <span className="font-display font-bold text-[#faede5]">{proyecto.titulo}</span>
+                {totalImages > 1 && (
+                  <span className="font-mono text-xs text-[#e8a038] bg-[#140c07] px-2.5 py-0.5 rounded-full border border-[#e8a038]/30">
+                    {safeIndex + 1} / {totalImages}
+                  </span>
+                )}
+              </div>
               <button
                 onClick={() => setFullscreenModal(false)}
-                className="p-1.5 rounded-lg bg-[#261910] text-[#bda89b] hover:text-[#faede5]"
+                className="px-3 py-1 rounded-lg bg-[#261910] hover:bg-[#e8a038] text-[#bda89b] hover:text-[#140c07] font-mono text-xs transition-colors"
               >
-                ✕ Cerrar
+                ✕ Cerrar (Esc)
               </button>
             </div>
-            <div className="max-h-[75vh] flex items-center justify-center overflow-hidden">
+
+            <div className="relative max-h-[72vh] min-h-[300px] flex items-center justify-center overflow-hidden bg-[#0a0503] rounded-xl border border-[rgba(224,122,63,0.2)]">
               <img
+                key={currentImage}
                 src={currentImage}
-                alt={proyecto.titulo}
-                className="max-h-[70vh] object-contain rounded-lg"
+                alt={`${proyecto.titulo} - Vista ${safeIndex + 1}`}
+                className="max-h-[68vh] w-auto max-w-full object-contain rounded-lg transition-all"
               />
+
+              {totalImages > 1 && (
+                <>
+                  <button
+                    onClick={handlePrev}
+                    aria-label="Anterior"
+                    className="absolute left-3 top-1/2 -translate-y-1/2 p-3 rounded-full bg-[#140c07]/90 hover:bg-[#e8a038] text-[#faede5] hover:text-[#140c07] border border-[rgba(224,122,63,0.5)] transition-all shadow-2xl"
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </button>
+                  <button
+                    onClick={handleNext}
+                    aria-label="Siguiente"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 p-3 rounded-full bg-[#140c07]/90 hover:bg-[#e8a038] text-[#faede5] hover:text-[#140c07] border border-[rgba(224,122,63,0.5)] transition-all shadow-2xl"
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </button>
+                </>
+              )}
             </div>
+
+            {/* Miniaturas en modal si hay más de 1 imagen */}
+            {totalImages > 1 && (
+              <div className="mt-3 flex items-center justify-center gap-2 overflow-x-auto pb-1">
+                {imageList.map((imgUrl, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentIndex(idx)}
+                    className={`w-12 h-12 rounded-lg overflow-hidden border transition-all flex-shrink-0 ${
+                      idx === safeIndex
+                        ? 'border-[#e8a038] ring-2 ring-[#e8a038]/50 scale-105'
+                        : 'border-[rgba(224,122,63,0.3)] opacity-50 hover:opacity-100'
+                    }`}
+                  >
+                    <img src={imgUrl} alt={`Miniatura ${idx + 1}`} className="w-full h-full object-cover" />
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       )}

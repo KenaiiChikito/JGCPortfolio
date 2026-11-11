@@ -174,7 +174,7 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
     subtitulo: "Programacion de sistema de movimiento y conexion con Photon",
     descripcion: "Trabaje como estudiante en el desarrollo de Rusted Steam Gear en el area de programacion para la funcionalidad completa de este mismo, tanto movimiento, disparos, vida y destruccion de murallas, este videojuego fue desarrollado principalmente como trabajo de universidad.",
     historiaDesarrollo: "Diseñado con enfasis en el area de Photon-PUN2 para conexion local/LAN con una misma build.",
-    imagen: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=900&auto=format&fit=crop&q=80",
+    imagen: "./Gears.jpeg",
     video: "", //por si hay video de youtube o similar para posibles gameplays
     tags: ["Unity", "C#", "Optimización"],
 
@@ -282,7 +282,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 }`
     },
-    linkDemo: "https://kenaiichikito.itch.io/", //añadir a futuro link del juego directo
+    //linkDemo: "https://kenaiichikito.itch.io/", //añadir a futuro link del juego directo
     linkCodigo: "https://github.com/KenaiiChikito/Prototipo.git", //añadir a futuro el repertorio de Github directo
     //linkGDD: "https://github.com/KenaiiChikito", //añadir a futuro link de GDD de Notion
   },
@@ -385,8 +385,17 @@ public class GameManager : MonoBehaviourPunCallbacks
     subtitulo: "Esculpido Orgánico & Hard-Surface en NomadSculpt",
     descripcion: "Diseño y modelado de máscara tradicional de estilo japonés, pensada como accesorio místico para personajes de acción o fantasía en videojuegos. Combina curvaturas orgánicas fluidas con bordes afilados legibles.",
     conceptoArtistico: "Inspirada en el folclore asiático con reinterpretación estilizada moderna. Modelada directamente en NomadSculpt, optimizando los bucles de aristas para capturar la luz de manera impactante en motores de tiempo real.",
+    
+    // RULETA / CARRUSEL DE IMÁGENES: Puedes agregar tantas imágenes como desees aquí
+    imagenes: [
+      "./Mask.png",
+      "./Poligon.png",
+      "./Render.png",
+      // Agrega más imágenes aquí si lo deseas, ej: "./OtraImagen.png",
+    ],
+
     imagenPrincipal: "./Mask.png",
-    imagenSecundaria: "./Lizzard.png",
+    imagenSecundaria: "./Poligon.png",
     software: ["NomadSculpt", "Blender"],
     detallesGeometria: [
       { label: "Triángulos", valor: "278.7K Tris" },
@@ -449,7 +458,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     intro: "¿Tienes un proyecto indie o buscas un colaborador para programación y modelado 3D? Envíame un mensaje y te responderé en breve.",
     email: "m.gomez.cornejo2001@gmail.com",
     ubicacion: "Rancagua, Chile — Disponible para trabajo remoto global",
-    disponibilidad: "Freelance / Contratos por Hito",
+    disponibilidad: "Freelance / Contratos por Hito / Practicante",
     cvUrl: "#descargar-cv", // Coloca aquí el link directo a tu PDF en Google Drive o Dropbox
   },
 

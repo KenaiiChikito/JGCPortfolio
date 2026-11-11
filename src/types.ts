@@ -98,7 +98,9 @@ export interface FeaturedCreativeProject {
   subtitulo: string;
   descripcion: string;
   conceptoArtistico?: string;
-  imagenPrincipal: string;
+  // Ruleta / carrusel de imágenes (puedes agregar tantas imágenes como quieras)
+  imagenes?: string[];
+  imagenPrincipal?: string;
   imagenSecundaria?: string;
   software: string[];
   detallesGeometria: {
