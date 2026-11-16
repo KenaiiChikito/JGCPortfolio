@@ -57,6 +57,14 @@ export interface HistorialUpdate {
   tipo: 'nuevo' | 'mejora' | 'correccion' | 'hito';
 }
 
+export interface FeaturedMediaItem {
+  tipo: 'imagen' | 'gif' | 'video' | 'youtube';
+  src: string; // Ruta local ("./gameplay.mp4", "./combate.gif", "./Gears.jpeg") o ID/URL de YouTube
+  thumbnail?: string; // Miniatura opcional (si no se indica, se genera automáticamente)
+  titulo?: string; // Título corto opcional mostrado en el reproductor
+  visible?: boolean; // Permite ocultar este elemento sin borrarlo (visible: false)
+}
+
 export interface FeaturedProgrammingProject {
   subtituloBadge?: string;
   titulo: string;
@@ -65,6 +73,8 @@ export interface FeaturedProgrammingProject {
   historiaDesarrollo?: string;
   imagen: string;
   video?: string;
+  // Galería estilo Steam: agrega tantos GIFs, videos (.mp4/.webm), YouTube o imágenes como quieras
+  galeriaMedia?: FeaturedMediaItem[];
   tags: string[];
   // Campos configurables para el footer inferior de la tarjeta
   statusTexto?: string; // Por ejemplo: "Status: Compilado & Optimizado"

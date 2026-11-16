@@ -176,6 +176,55 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
     historiaDesarrollo: "Diseñado con enfasis en el area de Photon-PUN2 para conexion local/LAN con una misma build.",
     imagen: "./Gears.jpeg",
     video: "", //por si hay video de youtube o similar para posibles gameplays
+
+    // GALERÍA MULTIMEDIA ESTILO STEAM (GIFs, videos MP4/WebM, YouTube o capturas)
+    // Coloca tus archivos .gif o .mp4 dentro de la carpeta "public/" y agrégalos aquí:
+    galeriaMedia: [
+      {
+        tipo: "imagen",
+        src: "./Gears.jpeg",
+        titulo: "Portada · Rusted Steam Gear",
+        visible: true,
+      },
+      {
+        tipo: "video",
+        src: "./Videos/Test.mp4",
+        titulo: "Movimiento, dash y disparo",
+        visible: true,
+      },
+      {
+        tipo: "video",
+        src: "./Videos/CreatingRoom.mp4",
+        titulo: "Creacion de Sala Online",
+        visible: true,
+      },{
+        tipo: "video",
+        src: "./Videos/MultiOnUnity.mp4",
+        titulo: "Multiplayer Visible",
+        visible: true,
+      },
+      // --- EJEMPLOS PARA AGREGAR TUS GIFs O VIDEOS (quita las // para activar) ---
+      // {
+      //   tipo: "gif",
+      //   src: "./gameplay-movimiento.gif",
+      //   titulo: "Gameplay · Sistema de Movimiento",
+      //   visible: true,
+      // },
+      // {
+      //   tipo: "video",
+      //   src: "./demo-photon.mp4",
+      //   thumbnail: "./Gears.jpeg", // Opcional: si lo omites, usa el primer frame del video
+      //   titulo: "Video · Conexión Multijugador LAN",
+      //   visible: true,
+      // },
+      // {
+      //   tipo: "youtube",
+      //   src: "ID_O_URL_DE_YOUTUBE",
+      //   titulo: "Trailer Técnico en YouTube",
+      //   visible: true,
+      // },
+    ],
+
     tags: ["Unity", "C#", "Optimización"],
 
     // Barra inferior de estado (puedes cambiar los textos libremente o poner mostrarStatusFooter: false)
