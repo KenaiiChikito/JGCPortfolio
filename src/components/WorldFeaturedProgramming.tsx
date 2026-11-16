@@ -123,13 +123,19 @@ export function WorldFeaturedProgramming({ proyecto, onOpenVideo }: WorldFeature
     }
   }, [safeIndex, activeItem?.src, activeItem?.tipo]);
 
-  // Centrar miniatura activa en la barra horizontal
+  // Centrar miniatura activa solo horizontalmente dentro de la barra (sin mover el scroll vertical de la página)
   useEffect(() => {
     const strip = stripRef.current;
-    if (!strip) return;
+    if (!strip || (safeIndex === 0 && strip.scrollLeft === 0)) return;
     const activeThumb = strip.children[safeIndex] as HTMLElement | undefined;
     if (activeThumb) {
-      activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      const stripRect = strip.getBoundingClientRect();
+      const thumbRect = activeThumb.getBoundingClientRect();
+      const targetLeft =
+        strip.scrollLeft +
+        (thumbRect.left - stripRect.left) -
+        (stripRect.width - thumbRect.width) / 2;
+      strip.scrollTo({ left: Math.max(0, targetLeft), behavior: 'smooth' });
     }
   }, [safeIndex]);
 
