@@ -331,7 +331,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 }`
     },
-    //linkDemo: "https://kenaiichikito.itch.io/", //añadir a futuro link del juego directo
+    linkDemo: "https://kenaiichikito.itch.io/rusted-steam-gear", //añadir a futuro link del juego directo
     linkCodigo: "https://github.com/KenaiiChikito/Prototipo", //añadir a futuro el repertorio de Github directo
     //linkGDD: "https://github.com/KenaiiChikito", //añadir a futuro link de GDD de Notion
   },
