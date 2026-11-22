@@ -506,9 +506,9 @@ public class GameManager : MonoBehaviourPunCallbacks
   contacto: {
     intro: "¿Tienes un proyecto indie o buscas un colaborador para programación y modelado 3D? Envíame un mensaje y te responderé en breve.",
     email: "m.gomez.cornejo2001@gmail.com",
-    ubicacion: "Rancagua, Chile — Disponible para trabajo remoto global",
+    ubicacion: "Rancagua, Chile — Disponible para trabajo remoto global o presencial",
     disponibilidad: "Freelance / Contratos por Hito / Practicante",
-    cvUrl: "#descargar-cv", // Coloca aquí el link directo a tu PDF en Google Drive o Dropbox
+    cvUrl: "/Archivosvarios/Gomez_Juan.pdf", // Coloca aquí el link directo a tu PDF en Google Drive o Dropbox
   },
 
   // URL para el código QR interactivo de tu portafolio
