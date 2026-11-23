@@ -881,9 +881,17 @@ export function WorldFeaturedProgramming({ proyecto, onOpenVideo }: WorldFeature
             <div className="relative aspect-video w-full bg-[#0a0503] rounded-xl overflow-hidden border border-[rgba(224,122,63,0.2)] flex items-center justify-center">
               {activeItem.tipo === 'video' ? (
                 <video
+                  key={activeItem.src}
+                  ref={(el) => {
+                    if (el) {
+                      el.muted = true;
+                      el.defaultMuted = true;
+                    }
+                  }}
                   src={activeItem.src}
                   controls
                   autoPlay
+                  muted
                   playsInline
                   className="w-full h-full object-contain"
                 />

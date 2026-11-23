@@ -10,13 +10,30 @@ export interface StatItem {
   category?: string;
 }
 
+export interface FeaturedMediaItem {
+  tipo: 'imagen' | 'gif' | 'video' | 'youtube';
+  src: string; // Ruta local ("./gameplay.mp4", "./combate.gif", "./Gears.jpeg") o ID/URL de YouTube
+  thumbnail?: string; // Miniatura opcional (si no se indica, se genera automáticamente)
+  titulo?: string; // Título corto opcional mostrado en el reproductor
+  visible?: boolean; // Permite ocultar este elemento sin borrarlo (visible: false)
+}
+
 export interface ProgrammingProject {
   id: string;
   titulo: string;
   tags: string[];
   descripcion: string;
   imagen: string;
-  video?: string; // YouTube video ID or embed
+  video?: string; // YouTube video ID/URL o ruta de video local
+  // Galería multimedia opcional (varios videos MP4/WebM, GIFs, YouTube o capturas)
+  galeriaMedia?: FeaturedMediaItem[];
+  // Apartado opcional para mostrar el código fuente completo dentro del módulo
+  codigoSnippet?: {
+    lenguaje: string;
+    archivo: string;
+    codigo: string;
+    visible?: boolean;
+  };
   linkDemo?: string;
   linkCodigo?: string;
   destacado?: boolean;
@@ -55,14 +72,6 @@ export interface HistorialUpdate {
   titulo: string;
   descripcion: string;
   tipo: 'nuevo' | 'mejora' | 'correccion' | 'hito';
-}
-
-export interface FeaturedMediaItem {
-  tipo: 'imagen' | 'gif' | 'video' | 'youtube';
-  src: string; // Ruta local ("./gameplay.mp4", "./combate.gif", "./Gears.jpeg") o ID/URL de YouTube
-  thumbnail?: string; // Miniatura opcional (si no se indica, se genera automáticamente)
-  titulo?: string; // Título corto opcional mostrado en el reproductor
-  visible?: boolean; // Permite ocultar este elemento sin borrarlo (visible: false)
 }
 
 export interface FeaturedProgrammingProject {

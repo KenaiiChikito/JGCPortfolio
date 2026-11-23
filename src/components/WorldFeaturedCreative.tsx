@@ -77,7 +77,7 @@ export function WorldFeaturedCreative({ proyecto }: WorldFeaturedCreativeProps) 
             Proyecto Creativo & Modelado Destacado
           </h2>
           <p className="text-[#bda89b] text-base mt-2 max-w-2xl font-body">
-            Pieza escultórica principal: proceso de diseño conceptual, esculpido orgánico, topología optimizada para tiempo real y presentación estética.
+            Pieza escultórica principal: proceso de diseño conceptual, esculpido orgánico, revisión de malla y presentación visual.
           </p>
         </div>
 
@@ -164,7 +164,7 @@ export function WorldFeaturedCreative({ proyecto }: WorldFeaturedCreativeProps) 
                   {/* Bottom indicator badge: estilo + contador ruleta */}
                   <div className="absolute bottom-3 left-3 flex items-center gap-2 z-10">
                     <span className="font-mono text-[11px] font-bold uppercase tracking-wider bg-[#140c07]/90 text-[#85994b] border border-[#85994b]/40 px-2.5 py-1 rounded-md shadow-sm">
-                      ESTILIZADO · GAME READY
+                      ESTILIZADO · HIGH-POLY SCULPT
                     </span>
                     {totalImages > 1 && (
                       <span className="font-mono text-[11px] font-bold bg-[#140c07]/90 text-[#e8a038] border border-[#e8a038]/40 px-2.5 py-1 rounded-md shadow-sm flex items-center gap-1.5">

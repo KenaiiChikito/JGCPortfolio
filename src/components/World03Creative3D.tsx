@@ -98,8 +98,8 @@ export function World03Creative3D({ modeladoData }: World03Creative3DProps) {
           </div>
         </div>
 
-        {/* Platforms Hub: Direct links to ArtStation, Sketchfab, Behance */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+        {/* Platforms Hub: Direct links to ArtStation, Sketchfab, etc. */}
+        <div className={`grid grid-cols-1 ${plataformasPrincipales.length === 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-3'} gap-4 mb-10`}>
           {plataformasPrincipales.map((plat) => (
             <a
               key={plat.nombre}

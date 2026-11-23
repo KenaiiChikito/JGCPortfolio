@@ -23,16 +23,16 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
      ================================================================================== */
   hero: {
     // Texto superior parpadeante (ej: "DISPONIBLE PARA NUEVOS PROYECTOS" o "EN BUSCA DE EQUIPO")
-    tagAvailability: "DISPONIBLE PARA PROYECTOS GRANDES, MEDIANOS O TAMBIEN PEQUEÑOS",
+    tagAvailability: "BUSCANDO PRÁCTICA PROFESIONAL · GAME PROGRAMMER / UNITY",
     
     // Tu nombre o gamertag principal
     nombre: "Juan Gomez",
     
     // Tu especialidad o título profesional (incluye cursor titilante en la pantalla)
-    rol: "Game Programmer - 3D Artist - Free-Lancer",
+    rol: "Game Programmer · Unity / C# · 3D Artist",
     
     // Breve descripción o frase de impacto que aparece debajo del rol
-    tagline: "Desarrollo de videojuegos, combinando código de alto rendimiento con arte 3D estilizado.",
+    tagline: "Desarrollo de videojuegos en Unity y C++, combinando programación de gameplay y sistemas con arte 3D estilizado.",
     
     // Texto del botón arcade principal
     botonPressStart: "▶ PRESS START",
@@ -59,26 +59,26 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
 
   // Ficha rápida de personaje (debajo del avatar)
   fichaRpg: {
-    rolPrincipal: "Programador / 3D",
-    motorFavorito: "C++ & Unity", // 👈 EDITA AQUÍ TU MOTOR FAVORITO (ej: "Unity", "Unreal Engine 5", "Godot", etc.)
+    rolPrincipal: "Gameplay / Sistemas",
+    motorFavorito: "Unity (C#) & C++", // 👈 EDITA AQUÍ TU MOTOR FAVORITO (ej: "Unity", "Unreal Engine 5", "Godot", etc.)
     staminaCreativa: "100% (Café Activo)",
   },
 
   // Párrafos de tu historia/bio (puedes agregar o quitar líneas en este arreglo)
   bio: [
-    "¡Hola lector! Soy estudiante de desarrollo de videojuegos, artista hard-surface y buscando el aprender modelado organico.", 
-    "Mi rol principal es de programacion en motores de desarrollo como Unity, Unreal y basico de Godot, con conocimiento de modelado hard-surface en Blender siempre tratando de hacer Props propios para proyectos propios o subirlos para aquellos que les cuesta un poco hacerlos.",
-    "Cuando no estoy programando estoy aprendiendo modelado organico en la aplicacion de NomadSculpt con formato estilizado para poder a futuro hacer mis propias creaciones e implementarla en futuros proyectos."
+    "¡Hola! Soy estudiante de desarrollo de videojuegos enfocado en programación de gameplay y sistemas, con conocimientos en modelado 3D hard-surface y esculpido orgánico estilizado.",
+    "Mi especialidad es la programación en Unity (C#) y Unreal Engine (C++), además de bases en Godot. En el área artística utilizo Blender para crear props propios pensados para integrarse directamente en motor.",
+    "Cuando no estoy programando, continúo perfeccionando mi flujo de esculpido orgánico en NomadSculpt con estilo estilizado para dar vida a criaturas y accesorios propios en futuros proyectos."
   ],
 
   // Atributos y estadísticas RPG (valores del 0 al 100) que se animan al hacer scroll
   stats: [
-    { label: "Programación C++ / C#", value: 83 },
-    { label: "GDD", value: 60 },
-    { label: "Modelado Hard Surface", value: 60 },
-    { label: "Modelado & Esculpido 3D", value: 20 },
+    { label: "Programación C# / Unity", value: 83 },
+    { label: "Gameplay, IA & Sistemas", value: 78 },
+    { label: "C++ / Unreal Engine", value: 70 },
+    { label: "Modelado 3D (Blender / Sculpt)", value: 65 },
     //{ label: "Texturizado PBR (Substance)", value: 80 },
-   //{ label: "Optimización de Rendimiento", value: 90 },
+    //{ label: "Optimización de Rendimiento", value: 90 },
   ],
 
   /* ==================================================================================
@@ -87,7 +87,7 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
      ================================================================================== */
   seccionesVisibles: {
     // Apagado temporalmente a petición del usuario. Cambiar a true para volver a mostrarlo:
-    mundo02Programacion: false,
+    mundo02Programacion: true,
     // Proyecto destacado de programación (C# Photon PUN2):
     mundo02Destacado: true,
   },
@@ -100,38 +100,365 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
   proyectosProgramacion: [
     {
       id: "prog-01",
-      titulo: "CHRONO SHIFT ENGINE",
-      tags: ["C++", "Vulkan API", "Multithreading", "Físicas"],
-      descripcion: "Motor gráfico 3D personalizado con arquitectura ECS (Entity Component System) orientada a datos, renderizador Vulkan por pases diferidos y buffer de rebobinado temporal determinista a 60 FPS.",
-      imagen: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=900&auto=format&fit=crop&q=80",
+      titulo: "RUSTED STEAM GEAR",
+      tags: ["Unity", "C#", "Photon PUN2"],
+      descripcion: "Prototipo multijugador universitario en Unity donde programé el bucle completo de combate y jugabilidad: desplazamiento, dash, disparos, gestión de vida y destrucción de murallas.",
+      imagen: "./Gears.jpeg",
       video: "", // Coloca aquí el ID de YouTube si tienes video (ej: "dQw4w9WgXcQ")
-      linkDemo: "https://github.com",
-      linkCodigo: "https://github.com",
+      linkDemo: "https://kenaiichikito.itch.io/rusted-steam-gear",
+      linkCodigo: "https://github.com/KenaiiChikito/Prototipo",
       destacado: true,
       detallesTecnicos: [
-        "Pipeline de sombras en cascada (CSM)",
-        "Compilación JIT de shaders HLSL a SPIR-V",
-        "Spatial Partitioning mediante Octree jerárquico"
+        "Mecánicas de combate, dash, disparo y murallas destructibles en C#",
+        "Sincronización LAN / online mediante Photon PUN2 en una sola build",
+        "Validación local de inputs para evitar desincronización entre clientes"
       ]
     },
     {
       id: "prog-02",
-      titulo: "DUNGEON SYNAPSE (ROGUE-AI)",
-      tags: ["C#", "Unity", "Algoritmos Procedurales", "Árboles de Comportamiento"],
-      descripcion: "Sistema de generación procedural de mazmorras basado en Wave Function Collapse y autómatas celulares, complementado con una máquina de estados jerárquica para la toma de decisiones tácticas de la IA enemiga.",
-      imagen: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=900&auto=format&fit=crop&q=80",
+      titulo: "IA de Enemigo con NavMesh (Enemy AI)",
+      tags: ["C#", "Unity", "VR", "NavMesh"],
+      descripcion: "Sistema modular de IA en Unity con NavMesh desarrollado para un proyecto VR en curso: el enemigo persigue al jugador al detectarlo dentro de un cono de visión de 90°, activa un temporizador de alerta por la espalda, valida obstáculos con Raycast y navega al último punto conocido al perder línea de visión.",
+      imagen: "./UnityArchives/Visual.jpg",
       video: "",
-      linkDemo: "https://itch.io",
-      linkCodigo: "https://github.com",
-      destacado: true,
+      // Galería de videos / GIFs de muestra (la "imagen" de arriba queda solo como portada de la tarjeta):
+      galeriaMedia: [
+        {
+          tipo: "video",
+          src: "./Videos/Raycast.mp4",
+          titulo: "Detección de obstáculos con Raycast",
+          visible: true,
+        },
+        {
+          tipo: "video",
+          src: "./Videos/Persecucion.mp4",
+          titulo: "Detección frontal 90° y persecución",
+          visible: true,
+        },
+        {
+          tipo: "video",
+          src: "./Videos/CatchBack.mp4",
+          titulo: "Detección trasera con temporizador",
+          visible: true,
+        },
+        {
+          tipo: "video",
+          src: "./Videos/FuncionCode.mp4",
+          titulo: "Visualización de estados del enemigo",
+          visible: true,
+        },
+        {
+          tipo: "video",
+          src: "./Videos/UltimoPoint.mp4",
+          titulo: "Búsqueda en último punto conocido",
+          visible: true,
+        },
+        // --- EJEMPLOS PARA AGREGAR TUS VIDEOS DE MUESTRA (quita las // para activar) ---
+        // {
+        //   tipo: "video",
+        //   src: "./UnityArchives/deteccion-90.mp4",
+        //   titulo: "Detección frontal 90° y persecución",
+        //   visible: true,
+        // },
+        // {
+        //   tipo: "video",
+        //   src: "./UnityArchives/ultimo-punto.mp4",
+        //   titulo: "Búsqueda en último punto conocido",
+        //   visible: true,
+        // },
+      ],
+      // linkCodigo: "https://github.com", // Desactivado: ahora el código se muestra directo abajo
+      codigoSnippet: {
+        lenguaje: "C#",
+        archivo: "EnemyAI.cs",
+        visible: true,
+        codigo: `using UnityEngine;
+using UnityEngine.AI;
+
+public class EnemigoIA : MonoBehaviour
+{
+    [Header("Referencias")]
+    public Transform jugador;
+    private NavMeshAgent agente;
+
+    [Header("Configuracion de Vision")]
+    public float rangoVision = 15f;
+    [Range(0, 360)]
+    public float anguloVision = 90f;
+    public LayerMask capaObstaculos;
+
+    [Header("Tiempos de Deteccion y Memoria")]
+    public float tiempoDeteccionEspalda = 3f;
+    public float tiempoParaPerderRastro = 3f;
+    public float velocidadGiro = 6f;
+
+    [Header("Alerta Visual Flotante (Sin Canvas)")]
+    public float alturaAlerta = 2.3f;
+    public float duracionSignoExclamacion = 2f;
+    private TextMesh textoAlerta;
+    private float temporizadorExclamacion;
+
+    private float contadorEspalda;
+    private int ultimoSegundoEspalda = -1;
+
+    private float temporizadorPerdida;
+    private int ultimoSegundoPerdida = -1;
+
+    private bool persiguiendo = false;
+    private bool viendoActualmente = false;
+    private Vector3 ultimaPosicionConocida;
+
+    void Start()
+    {
+        agente = GetComponent<NavMeshAgent>();
+        contadorEspalda = tiempoDeteccionEspalda;
+        CrearTextoAlertaFlotante();
+    }
+
+    void CrearTextoAlertaFlotante()
+    {
+        // Crea un objeto 3D hijo sobre el enemigo sin necesidad de Canvas
+        GameObject objAlerta = new GameObject("AlertaVisual_3D");
+        objAlerta.transform.SetParent(transform);
+        objAlerta.transform.localPosition = new Vector3(0, alturaAlerta, 0);
+
+        textoAlerta = objAlerta.AddComponent<TextMesh>();
+        textoAlerta.alignment = TextAlignment.Center;
+        textoAlerta.anchor = TextAnchor.MiddleCenter;
+        textoAlerta.fontSize = 60;
+        textoAlerta.characterSize = 0.15f;
+        textoAlerta.fontStyle = FontStyle.Bold;
+        textoAlerta.text = "";
+    }
+
+    void Update()
+    {
+        if (jugador == null) return;
+
+        // Mantener el signo flotante mirando siempre hacia la camara principal
+        if (textoAlerta != null && Camera.main != null)
+        {
+            textoAlerta.transform.rotation = Camera.main.transform.rotation;
+        }
+
+        // Apagar el signo de exclamacion despues de unos segundos
+        if (temporizadorExclamacion > 0)
+        {
+            temporizadorExclamacion -= Time.deltaTime;
+            if (temporizadorExclamacion <= 0 && textoAlerta.text == "!")
+            {
+                textoAlerta.text = "";
+            }
+        }
+
+        bool tieneLineaDeVision = HayLineaDeVisionSinObstaculos();
+        bool dentroDeCono = EstaEnConoDeVision();
+
+        // CASO 1: Te esta viendo directamente en su cono de vision
+        if (tieneLineaDeVision && dentroDeCono)
+        {
+            viendoActualmente = true;
+            ultimaPosicionConocida = jugador.position; // Actualiza tu posicion real
+
+            if (!persiguiendo)
+            {
+                Debug.Log("<color=green>[IA]</color> ¡Jugador avistado! Persecucion iniciada.");
+                MostrarExclamacion();
+            }
+            ActivarPersecucion();
+        }
+        // CASO 2: Estas detras de el (sin paredes, pero fuera de su cono)
+        else if (tieneLineaDeVision && !dentroDeCono && !persiguiendo)
+        {
+            viendoActualmente = false;
+            ProcesarDeteccionPorEspalda();
+        }
+        // CASO 3: No te ve (te escondiste detras de un muro o saliste del rango)
+        else
+        {
+            viendoActualmente = false;
+
+            // Cancelar sospecha por la espalda si te alejas antes de los 3 segundos
+            if (contadorEspalda < tiempoDeteccionEspalda)
+            {
+                contadorEspalda = tiempoDeteccionEspalda;
+                ultimoSegundoEspalda = -1;
+                if (textoAlerta.text == "?") textoAlerta.text = "";
+                Debug.Log("<color=cyan>[IA]</color> Sospecha por la espalda cancelada.");
+            }
+
+            // Si ya te estaba persiguiendo, va hacia tu ultima posicion conocida y cuenta los segundos
+            if (persiguiendo)
+            {
+                ProcesarPerdidaDeRastro();
+            }
+        }
+
+        // Ejecutar movimiento hacia la ultima posicion conocida (no hacia el jugador real si esta escondido)
+        if (persiguiendo)
+        {
+            agente.SetDestination(ultimaPosicionConocida);
+
+            // Solo gira activamente hacia el jugador si lo esto viendo o acaba de girar al detectarlo
+            if (viendoActualmente || Vector3.Distance(transform.position, ultimaPosicionConocida) > 0.5f)
+            {
+                GirarHaciaPunto(ultimaPosicionConocida);
+            }
+        }
+    }
+
+    void MostrarExclamacion()
+    {
+        if (textoAlerta == null) return;
+        textoAlerta.text = "!";
+        textoAlerta.color = Color.red;
+        temporizadorExclamacion = duracionSignoExclamacion;
+    }
+
+    void ProcesarDeteccionPorEspalda()
+    {
+        // Muestra un '?' amarillo mientras sospecha
+        if (textoAlerta != null && temporizadorExclamacion <= 0)
+        {
+            textoAlerta.text = "?";
+            textoAlerta.color = Color.yellow;
+        }
+
+        contadorEspalda -= Time.deltaTime;
+        int segundoActual = Mathf.CeilToInt(contadorEspalda);
+
+        if (segundoActual != ultimoSegundoEspalda && segundoActual > 0)
+        {
+            ultimoSegundoEspalda = segundoActual;
+            Debug.Log($"<color=yellow>[IA - Espalda]</color> Sintiendo presencia detras... {segundoActual}s");
+        }
+
+        if (contadorEspalda <= 0f)
+        {
+            Debug.Log("<color=red>[IA - Espalda]</color> ¡Te descubrio por la espalda!");
+            ultimaPosicionConocida = jugador.position;
+            MostrarExclamacion();
+            ActivarPersecucion();
+        }
+    }
+
+    void ProcesarPerdidaDeRastro()
+    {
+        temporizadorPerdida -= Time.deltaTime;
+
+        float tiempoTranscurrido = tiempoParaPerderRastro - temporizadorPerdida;
+        int segundoTranscurrido = Mathf.FloorToInt(tiempoTranscurrido);
+
+        if (segundoTranscurrido != ultimoSegundoPerdida && segundoTranscurrido > 0)
+        {
+            ultimoSegundoPerdida = segundoTranscurrido;
+            Debug.Log($"<color=orange>[IA - Rastro]</color> Jugador fuera de vista hace {segundoTranscurrido}s...");
+        }
+
+        if (temporizadorPerdida <= 0f)
+        {
+            persiguiendo = false;
+            ultimoSegundoPerdida = -1;
+            agente.ResetPath(); // Se detiene donde llego
+            Debug.Log("<color=grey>[IA - Rastro]</color> Rastro perdido por completo. Enemigo detenido.");
+        }
+    }
+
+    void ActivarPersecucion()
+    {
+        persiguiendo = true;
+        temporizadorPerdida = tiempoParaPerderRastro;
+        ultimoSegundoPerdida = -1;
+        contadorEspalda = tiempoDeteccionEspalda;
+        ultimoSegundoEspalda = -1;
+    }
+
+    void GirarHaciaPunto(Vector3 puntoObjetivo)
+    {
+        Vector3 direccion = (puntoObjetivo - transform.position).normalized;
+        direccion.y = 0;
+        if (direccion != Vector3.zero)
+        {
+            Quaternion rotacionObjetivo = Quaternion.LookRotation(direccion);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotacionObjetivo, Time.deltaTime * velocidadGiro);
+        }
+    }
+
+    bool HayLineaDeVisionSinObstaculos()
+    {
+        float distancia = Vector3.Distance(transform.position, jugador.position);
+        if (distancia > rangoVision) return false;
+
+        Vector3 origenOjos = transform.position + Vector3.up * 1f;
+        Vector3 destinoPecho = jugador.position + Vector3.up * 1f;
+        Vector3 direccionRayo = (destinoPecho - origenOjos).normalized;
+
+        return !Physics.Raycast(origenOjos, direccionRayo, distancia, capaObstaculos);
+    }
+
+    bool EstaEnConoDeVision()
+    {
+        Vector3 direccionAlJugador = (jugador.position - transform.position).normalized;
+        float angulo = Vector3.Angle(transform.forward, direccionAlJugador);
+        return angulo < anguloVision / 2f;
+    }
+
+    // Ayudas visuales en la pestaña Scene
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, rangoVision);
+
+        Vector3 limiteIzquierdo = Quaternion.Euler(0, -anguloVision / 2f, 0) * transform.forward * rangoVision;
+        Vector3 limiteDerecho = Quaternion.Euler(0, anguloVision / 2f, 0) * transform.forward * rangoVision;
+
+        Gizmos.color = Color.white;
+        Gizmos.DrawLine(transform.position + Vector3.up * 1f, transform.position + Vector3.up * 1f + limiteIzquierdo);
+        Gizmos.DrawLine(transform.position + Vector3.up * 1f, transform.position + Vector3.up * 1f + limiteDerecho);
+
+        // Dibuja una esfera azul en el ultimo punto donde te vio
+        if (persiguiendo)
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawSphere(ultimaPosicionConocida, 0.4f);
+        }
+
+        if (jugador != null)
+        {
+            float distancia = Vector3.Distance(transform.position, jugador.position);
+            if (distancia <= rangoVision)
+            {
+                Vector3 origenOjos = transform.position + Vector3.up * 1f;
+                Vector3 destinoPecho = jugador.position + Vector3.up * 1f;
+
+                bool sinObstaculos = HayLineaDeVisionSinObstaculos();
+                bool enCono = EstaEnConoDeVision();
+
+                if (sinObstaculos && enCono)
+                    Gizmos.color = Color.green;
+                else if (sinObstaculos && !enCono)
+                    Gizmos.color = Color.yellow;
+                else
+                    Gizmos.color = Color.red;
+
+                Gizmos.DrawLine(origenOjos, destinoPecho);
+            }
+        }
+    }
+}`,
+      },
+      destacado: false,
       detallesTecnicos: [
-        "Generación determinista vía semillas RNG 64-bit",
-        "Algoritmo A* con pesos de coste dinámicos",
-        "Sistema de inventario modular basado en ScriptableObjects"
+        "IA de enemigo modular basada en NavMeshAgent para proyecto VR en desarrollo",
+        "Cono de visión (90°–360°) con depuración visual vía Gizmos y Raycast",
+        "Alerta diegética 3D en espacio de mundo (TextMesh sin Canvas, orientada a cámara VR)",
+        "Temporizador de alerta por la espalda y parámetros ajustables en Inspector",
+        "Memoria espacial: navegación al último punto conocido tras perder visión"
       ]
     },
     {
       id: "prog-03",
+      visible: false, // Cambia a true cuando quieras volver a mostrarlo
       titulo: "NET-WARPING MULTIPLAYER",
       tags: ["C++", "UDP Sockets", "Client-Side Prediction", "Lag Compensation"],
       descripcion: "Backend de red autoritativo para combates en tiempo real de hasta 16 jugadores. Implementa reconciliación de predicción del cliente y retroceso temporal (rollback / rewind) para registro exacto de proyectiles.",
@@ -148,6 +475,7 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
     },
     {
       id: "prog-04",
+      visible: false, // Cambia a true cuando quieras volver a mostrarlo
       titulo: "VOLUMETRIC AUTUMN SHADER",
       tags: ["HLSL", "Compute Shaders", "Raymarching", "Unreal Engine 5"],
       descripcion: "Shader volumétrico interactivo que simula niebla densa otoñal y haces de luz crepusculares dispersados por partículas de hojas doradas, optimizado para consolas y PC de gama media.",
@@ -171,9 +499,9 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
   proyectoProgramacionDestacado: {
     subtituloBadge: "MUNDO 02-B · SPOTLIGHT TÉCNICO",
     titulo: "RUSTED STEAM GEAR",
-    subtitulo: "Programacion de sistema de movimiento y conexion con Photon",
-    descripcion: "Trabaje como estudiante en el desarrollo de Rusted Steam Gear en el area de programacion para la funcionalidad completa de este mismo, tanto movimiento, disparos, vida y destruccion de murallas, este videojuego fue desarrollado principalmente como trabajo de universidad.",
-    historiaDesarrollo: "Diseñado con enfasis en el area de Photon-PUN2 para conexion local/LAN con una misma build.",
+    subtitulo: "Arquitectura de gameplay y conexión multijugador con Photon PUN2",
+    descripcion: "Desglose técnico de mi trabajo de programación en Rusted Steam Gear: desde el control de movimiento, dash y disparos hasta el flujo de salas multijugador y estado de partida en Unity.",
+    historiaDesarrollo: "Implementado con Photon PUN2 para permitir partidas en red local/LAN usando una misma build compilada, sincronizando eventos clave y estados de sala.",
     imagen: "./Gears.jpeg",
     video: "", //por si hay video de youtube o similar para posibles gameplays
 
@@ -195,12 +523,13 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
       {
         tipo: "video",
         src: "./Videos/CreatingRoom.mp4",
-        titulo: "Creacion de Sala Online",
+        titulo: "Creación de Sala Online",
         visible: true,
-      },{
+      },
+      {
         tipo: "video",
         src: "./Videos/MultiOnUnity.mp4",
-        titulo: "Multiplayer Visible",
+        titulo: "Multijugador en Tiempo Real",
         visible: true,
       },
       // --- EJEMPLOS PARA AGREGAR TUS GIFs O VIDEOS (quita las // para activar) ---
@@ -225,10 +554,10 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
       // },
     ],
 
-    tags: ["Unity", "C#", "Optimización"],
+    tags: ["Unity", "C#", "Photon PUN2"],
 
     // Barra inferior de estado (puedes cambiar los textos libremente o poner mostrarStatusFooter: false)
-    statusTexto: "Status: Incompleto",
+    statusTexto: "Status: Prototipo Jugable (itch.io)",
     statusTargetBadge: "60 FPS TARGET",
     mostrarStatusFooter: false, // Pon false si quieres ocultar toda la barra inferior
 
@@ -244,8 +573,8 @@ export const PORTFOLIO_CONFIG: PortfolioConfig = {
     ],
     caracteristicasTecnicas: [
       // Puedes apagar cualquiera con visible: false
-      { titulo: "Multiplayer Active", descripcion: "Funciones integradas de Photon-PUN para el juego multijugador entre computadoras.", visible: true },
-      { titulo: "Simulación basada en inputs", descripcion: "Inputs unicos verificados de forma local para ambas computadoras para no tener problemas con estos mismos.", visible: true },
+      { titulo: "Multiplayer con Photon PUN2", descripcion: "Gestión de salas, conexión entre clientes y manejo de eventos de victoria o abandono.", visible: true },
+      { titulo: "Simulación basada en inputs", descripcion: "Inputs únicos verificados de forma local en cada cliente para evitar desincronización entre jugadores.", visible: true },
       { titulo: "Pool de Objetos & Reutilización de Memoria", descripcion: "Estructuras pre-asignadas para proyectiles, efectos visuales y enemigos sin sobrecargar la memoria.", visible: false },
     ],
     codigoSnippet: {
@@ -342,24 +671,19 @@ public class GameManager : MonoBehaviourPunCallbacks
      en plataformas de arte 3D (ArtStation, Sketchfab, Behance, Gumroad, etc.).
      ================================================================================== */
   modelado3D: {
-    descripcionSeccion: "Exploración de assets 3D optimizados para tiempo real, desde personajes de alta densidad poligonal esculpidos en NomadCulpt hasta modelos de hard-surface en Blender.",
+    descripcionSeccion: "Exploración de assets y personajes 3D, desde esculpido de alta densidad poligonal en NomadSculpt hasta modelos hard-surface creados en Blender.",
     
     // Plataformas donde subes tus modelos para que los visitantes los inspeccionen en 3D
     plataformasPrincipales: [
       {
         nombre: "ArtStation",
-        url: "https://artstation.com",
-        descripcion: "Portafolio principal de renders 4K, breakdowns de topología y mallas de alambre."
+        url: "https://www.artstation.com/kenaiichikito",
+        descripcion: "Perfil artístico con renders de presentación, avances de esculpido y proyectos 3D."
       },
       {
         nombre: "Sketchfab",
-        url: "https://sketchfab.com",
-        descripcion: "Visualizador 3D interactivo en tiempo real: inspecciona geometrías, normales y texturas PBR."
-      },
-      {
-        nombre: "Behance",
-        url: "https://behance.net",
-        descripcion: "Casos de estudio visuales, bocetos conceptuales y dirección de arte."
+        url: "https://sketchfab.com/KenaiiChikito",
+        descripcion: "Visualizador 3D interactivo en tiempo real para inspeccionar geometrías y volúmenes en 360°."
       }
     ],
 
@@ -375,8 +699,8 @@ public class GameManager : MonoBehaviourPunCallbacks
       //   polycount: "28,450 Tris",
       //   texturas: "2 Sets 4K (Albedo, Normal, Roughness, Metal, AO, Emission)",
       //   plataformas: [
-      //     { nombre: "Ver en ArtStation", url: "https://artstation.com" },
-      //     { nombre: "Inspeccionar 3D en Sketchfab", url: "https://sketchfab.com" }
+      //     { nombre: "Ver en ArtStation", url: "https://www.artstation.com/kenaiichikito" },
+      //     { nombre: "Inspeccionar 3D en Sketchfab", url: "https://sketchfab.com/KenaiiChikito" }
       //   ]
       // },
       // {
@@ -389,35 +713,33 @@ public class GameManager : MonoBehaviourPunCallbacks
       //   polycount: "6,200 Tris",
       //   texturas: "1 Set 4K PBR Met/Rough",
       //   plataformas: [
-      //     { nombre: "Ver en ArtStation", url: "https://artstation.com" },
+      //     { nombre: "Ver en ArtStation", url: "https://www.artstation.com/kenaiichikito" },
       //     { nombre: "Descargar en Gumroad", url: "https://gumroad.com" }
       //   ]
       // },
       {
         id: "nomad-mask",
-        titulo: "Mascara",
-        subtitulo: "Mascara Japonesa estilizado (no terminado)",
-        descripcion: "Diseño de mascara estilo japonesa modelada en NomadSculpt con un formato de diseño estilizado.",
+        titulo: "Máscara Japonesa",
+        subtitulo: "Esculpido Estilizado en NomadSculpt",
+        descripcion: "Diseño de máscara tradicional japonesa esculpida en NomadSculpt con enfoque en silueta marcada y formas estilizadas.",
         imagen: "./Mask.png",
         software: ["NomadSculpt"],
-        polycount: "278.7k Triangles",
-        texturas: "Uncolored",
+        polycount: "278.7K Tris (High-Poly)",
+        texturas: "Sin texturizar (Sculpt)",
         plataformas: [
-          //{ nombre: "Ver desglose en ArtStation", url: "https://artstation.com" },
           { nombre: "Ver proyecto en Sketchfab", url: "https://sketchfab.com/3d-models/mask-f2675005f0c64ecaa8a70f73482f2f59" }
         ]
       },
       {
         id: "nomad-lizzard",
         titulo: "Lizzard Model",
-        subtitulo: "Chibi Lizzard uncolored Model",
-        descripcion: "Modelo de lagarto hecho en tiempos de ocio en NomadSculpt, pensado principalmente como modelo de prueba para practicar y aprender modelado organico.",
+        subtitulo: "Chibi Lizzard · Esculpido Orgánico",
+        descripcion: "Modelo de lagarto chibi esculpido en NomadSculpt como práctica de anatomía orgánica, proporciones y volúmenes estilizados.",
         imagen: "./Lizzard.png",
         software: ["NomadSculpt"],
-        polycount: "863.3K Triangles",
-        texturas: "Uncolored",
+        polycount: "863.3K Tris (High-Poly)",
+        texturas: "Sin texturizar (Sculpt)",
         plataformas: [
-          //{ nombre: "Ver en ArtStation", url: "https://artstation.com" },
           { nombre: "Modelo 3D en Sketchfab", url: "https://sketchfab.com/3d-models/lizzard-7908c2bf3bfe489bbb9c78dd4c2bb0f6" }
         ]
       }
@@ -432,8 +754,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     subtituloBadge: "MUNDO 03-B · HERO ASSET 3D",
     titulo: "MÁSCARA JAPONESA ESTILIZADA",
     subtitulo: "Esculpido Orgánico & Hard-Surface en NomadSculpt",
-    descripcion: "Diseño y modelado de máscara tradicional de estilo japonés, pensada como accesorio místico para personajes de acción o fantasía en videojuegos. Combina curvaturas orgánicas fluidas con bordes afilados legibles.",
-    conceptoArtistico: "Inspirada en el folclore asiático con reinterpretación estilizada moderna. Modelada directamente en NomadSculpt, optimizando los bucles de aristas para capturar la luz de manera impactante en motores de tiempo real.",
+    descripcion: "Diseño y esculpido de máscara tradicional japonesa, pensada como accesorio místico para personajes de acción o fantasía en videojuegos. Combina curvaturas orgánicas fluidas con bordes definidos y legibles.",
+    conceptoArtistico: "Inspirada en el folclore asiático con una reinterpretación estilizada moderna. Esculpida en NomadSculpt y revisada en Blender, cuidando las transiciones de volumen para una lectura clara bajo iluminación direccional.",
     
     // RULETA / CARRUSEL DE IMÁGENES: Puedes agregar tantas imágenes como desees aquí
     imagenes: [
@@ -449,13 +771,13 @@ public class GameManager : MonoBehaviourPunCallbacks
     detallesGeometria: [
       { label: "Triángulos", valor: "278.7K Tris" },
       { label: "Estilo", valor: "Estilizado" },
-      { label: "Topología", valor: "Game Ready" },
+      { label: "Etapa", valor: "High-Poly Sculpt" },
       { label: "Software", valor: "NomadSculpt" },
     ],
     puntosClave: [
-      { titulo: "Silueta de Alto Impacto", descripcion: "Volúmenes y cuernos modelados para máxima legibilidad visual en cámara en tercera persona." },
-      { titulo: "Flujo de Curvas Esculpidas", descripcion: "Transición orgánica sin artefactos de pellizco, lista para texturizado PBR o sombreado Cel-Shaded." },
-      { titulo: "Inspección 3D Interactiva", descripcion: "Malla subida a Sketchfab para inspección de geometría en tiempo real a 360 grados." },
+      { titulo: "Silueta de Alto Impacto", descripcion: "Volúmenes y cuernos esculpidos para máxima legibilidad visual desde cámara en tercera persona." },
+      { titulo: "Flujo de Curvas Esculpidas", descripcion: "Transiciones suaves entre planos orgánicos y aristas marcadas, lista como base para futura retopología y texturizado PBR." },
+      { titulo: "Inspección 3D Interactiva", descripcion: "Malla publicada en Sketchfab para inspección de geometría y proporciones en 360°." },
     ],
     plataformas: [
       { nombre: "Sketchfab 3D", url: "https://sketchfab.com/3d-models/mask-f2675005f0c64ecaa8a70f73482f2f59", icono: "sketchfab" },
@@ -471,21 +793,21 @@ public class GameManager : MonoBehaviourPunCallbacks
      ================================================================================== */
   inventario: {
     "Lenguajes de Programación": [
-      { icon: "⚡", label: "C#", nivel: "Intermedio", descripcion: "Gameplay en Unity" },
-      { icon: "⚙️", label: "C++", nivel: "Intermedio", descripcion: "Unreal Engine" },
+      { icon: "⚡", label: "C#", nivel: "Intermedio", descripcion: "Programación de gameplay e IA en Unity" },
+      { icon: "⚙️", label: "C++", nivel: "Intermedio", descripcion: "Lógica y sistemas base en Unreal Engine" },
       //{ icon: "🦀", label: "Rust", nivel: "Intermedio", descripcion: "Desarrollo de herramientas de sistema seguras" },
       //{ icon: "✨", label: "HLSL / GLSL", nivel: "Avanzado", descripcion: "Shaders de superficie, postprocesado y compute shaders" },
       //{ icon: "🔷", label: "TypeScript", nivel: "Intermedio", descripcion: "Herramientas de automatización y UI web" },
     ],
     "Motores de Videojuegos": [
-      { icon: "🎮", label: "Unity", nivel: "Avanzado", descripcion: "URP, HDRP, C#, animación, sistemas de UI" },
-      { icon: "🏰", label: "Unreal Engine 5", nivel: "Principiante", descripcion: "C++, Blueprints" },
-      { icon: "🧩", label: "Godot Engine", nivel: "Principiante", descripcion: "Prototipado rápido" },
+      { icon: "🎮", label: "Unity", nivel: "Avanzado", descripcion: "C#, NavMesh, Photon PUN2, animación y sistemas de UI" },
+      { icon: "🏰", label: "Unreal Engine 5", nivel: "Principiante", descripcion: "C++ y Blueprints" },
+      { icon: "🧩", label: "Godot Engine", nivel: "Principiante", descripcion: "Prototipado rápido de mecánicas" },
       //{ icon: "🕹️", label: "Custom Engine", nivel: "Avanzado", descripcion: "Arquitectura OpenGL / Vulkan en C++" },
     ],
     "Modelado & Arte 3D": [
       { icon: "🌀", label: "Blender", nivel: "Avanzado", descripcion: "Modelado hard-surface, retopología, UVs y rigging" },
-      { icon: "🗿", label: "NomadSculpt", nivel: "Intermedio", descripcion: "Aprendiendo esculpido orgánico" },
+      { icon: "🗿", label: "NomadSculpt", nivel: "Intermedio", descripcion: "Esculpido orgánico y estilizado de personajes y props" },
       //{ icon: "🎨", label: "Substance Painter", nivel: "Avanzado", descripcion: "Texturizado PBR, bakeado de mapas normales y AO" },
       //{ icon: "🧱", label: "Substance Designer", nivel: "Intermedio", descripcion: "Materiales procedurales continuos y trim sheets" },
       //{ icon: "📸", label: "Marmoset Toolbag", nivel: "Avanzado", descripcion: "Bakeado de geometrías y renders de presentación" },
@@ -493,7 +815,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     "Herramientas & Pipeline": [
       //{ icon: "🗂️", label: "Git & LFS", nivel: "Avanzado", descripcion: "Control de versiones para assets pesados de juego" },
       //{ icon: "🔍", label: "RenderDoc", nivel: "Intermedio", descripcion: "Depuración de draw calls y análisis de pipeline GPU" },
-      { icon: "💻", label: "Visual Studio", nivel: "Avanzado", descripcion: "Profiling de CPU/memoria y debugging profundo" },
+      { icon: "💻", label: "Visual Studio", nivel: "Avanzado", descripcion: "Debugging, profiling de CPU/memoria e integración con Unity" },
       //{ icon: "🐳", label: "Docker", nivel: "Intermedio", descripcion: "Servidores dedicados de prueba para multiplayer" },
     ],
   },
@@ -504,11 +826,11 @@ public class GameManager : MonoBehaviourPunCallbacks
      y la nueva sección de HISTORIAL con las últimas actualizaciones realizadas.
      ================================================================================== */
   contacto: {
-    intro: "¿Tienes un proyecto indie o buscas un colaborador para programación y modelado 3D? Envíame un mensaje y te responderé en breve.",
+    intro: "¿Buscas un practicante o colaborador para programación en Unity / C# y soporte de arte 3D? Escríbeme o descarga mi CV y conversemos.",
     email: "m.gomez.cornejo2001@gmail.com",
-    ubicacion: "Rancagua, Chile — Disponible para trabajo remoto global o presencial",
-    disponibilidad: "Freelance / Contratos por Hito / Practicante",
-    cvUrl: "/Archivosvarios/Gomez_Juan.pdf", // Coloca aquí el link directo a tu PDF en Google Drive o Dropbox
+    ubicacion: "Rancagua, Chile — Disponible para modalidad presencial, híbrida o remota",
+    disponibilidad: "Práctica Profesional / Proyectos Indie / Freelance",
+    cvUrl: "./Archivosvarios/Gomez_Juan.pdf",
   },
 
   // URL para el código QR interactivo de tu portafolio
@@ -523,38 +845,38 @@ public class GameManager : MonoBehaviourPunCallbacks
     // Tu clave maestra secreta (Cámbiala cuando quieras por la que prefieras):
     claveAcceso: "152436JG",
     // Tu usuario oficial de GitHub para validar autoría:
-    githubUsername: "KenaiIchikito",
+    githubUsername: "KenaiiChikito",
   },
 
   // NUEVA SECCIÓN: Registro de guardado / Historial de actualizaciones (Changelog de parches)
   historialActualizaciones: [
     {
-      version: "v1.4 - OTOÑO UPDATE",
-      fecha: "Septiembre 2026",
-      titulo: "Lanzamiento de Galería 3D & Nuevos Shaders",
-      descripcion: "Se integró el nuevo carrusel interactivo con renders 3D en alta definición, desglose de topología y enlaces a ArtStation y Sketchfab. Actualización de shaders HLSL volumétricos.",
+      version: "v1.4",
+      fecha: "Noviembre 2026",
+      titulo: "Sistema de IA con NavMesh, Demos en Video y Código en Vivo",
+      descripcion: "Agregué mi proyecto de Enemy AI para Unity (cono de visión de 90°, detección por espalda con temporizador, raycast de obstáculos y último punto conocido) junto con 5 videos de prueba y el script completo de C# legible directo desde el portafolio.",
       tipo: "nuevo"
     },
     {
-      version: "v1.3 - PATCH",
-      fecha: "Julio 2026",
-      titulo: "Optimización de Motor C++ & Reconciliación de Red",
-      descripcion: "Refactorización del sistema multihilo en el motor propietario Chrono Shift Engine. Reducción del retraso de predicción de red en combates multijugador.",
-      tipo: "mejora"
-    },
-    {
-      version: "v1.2 - SAVE STATE",
-      fecha: "Mayo 2026",
-      titulo: "Publicación de Prototipo Roguelike en itch.io",
-      descripcion: "Lanzamiento jugable de 'Dungeon Synapse' con sistema de mazmorras procedurales y generación de mapas con semillas deterministas.",
+      version: "v1.3",
+      fecha: "Noviembre 2026",
+      titulo: "Rusted Steam Gear en itch.io & Galería de Gameplay",
+      descripcion: "Sumé la ficha completa de Rusted Steam Gear con enlace directo para probarlo en itch.io, el código de GameManager en Photon PUN2 y un reproductor multimedia para ver clips de movimiento, dash y creación de salas LAN.",
       tipo: "hito"
     },
     {
-      version: "v1.1 - ENGINE FIX",
-      fecha: "Marzo 2026",
-      titulo: "Limpieza de Dependencias & Inventario de Skills",
-      descripcion: "Reorganización profunda de las habilidades técnicas especializadas en desarrollo nativo C++, C# y herramientas 3D.",
-      tipo: "correccion"
+      version: "v1.2",
+      fecha: "Septiembre 2026",
+      titulo: "Vitrina 3D: Máscara Japonesa Estilizada y Lizzard",
+      descripcion: "Incorporé mis modelos 3D esculpidos en NomadSculpt y Blender con visor de múltiples capturas (render y topología) y acceso directo a Sketchfab para inspeccionarlos en 360°.",
+      tipo: "nuevo"
+    },
+    {
+      version: "v1.1",
+      fecha: "Septiembre 2026",
+      titulo: "CV Descargable, Enlaces Oficiales y Ajuste de Habilidades",
+      descripcion: "Dejé configurada la descarga directa de mi currículum en PDF, la ficha técnica enfocada en Unity, C#, C++ y modelado 3D, y la nueva URL del portafolio en GitHub Pages.",
+      tipo: "mejora"
     }
   ],
 
