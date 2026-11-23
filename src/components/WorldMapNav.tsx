@@ -43,8 +43,8 @@ export function WorldMapNav({ activeSection, onSelectSection }: WorldMapNavProps
     const total = WORLD_SECTIONS.length - 1;
     if (activeIdx !== -1 && total > 0) {
       setProgressPct((activeIdx / total) * 100);
-      // approximate pixel position based on 46px per item
-      setMarkerTop(activeIdx * 46 + 18);
+      // 28px button height + 14px gap = 42px per step; nav py-4 (16px) + 14px center - 5px half diamond = 25px
+      setMarkerTop(activeIdx * 42 + 25);
     }
   }, [activeSection]);
 
@@ -53,10 +53,10 @@ export function WorldMapNav({ activeSection, onSelectSection }: WorldMapNavProps
       {/* Desktop Vertical Level Map (Right side) */}
       <nav
         aria-label="Mapa de niveles del portafolio"
-        className="hidden md:flex fixed right-6 top-1/2 -translate-y-1/2 z-40 flex-col items-end py-4 px-2 select-none"
+        className="hidden md:flex fixed right-2.5 xl:right-5 top-1/2 -translate-y-1/2 z-40 flex-col items-end py-4 px-2 select-none pointer-events-none"
       >
         {/* Background track line and active progress line */}
-        <div className="absolute right-[19px] top-6 bottom-6 w-[2px] bg-[rgba(224,122,63,0.2)]">
+        <div className="absolute right-[21px] top-[30px] bottom-[30px] w-[2px] bg-[rgba(224,122,63,0.2)]">
           <div
             className="w-full bg-gradient-to-b from-[#e07a3f] via-[#e8a038] to-[#f59e0b] transition-all duration-300 ease-out rounded-full shadow-[0_0_8px_rgba(232,160,56,0.6)]"
             style={{ height: `${progressPct}%` }}
@@ -65,7 +65,7 @@ export function WorldMapNav({ activeSection, onSelectSection }: WorldMapNavProps
 
         {/* Moving player marker (golden diamond) */}
         <div
-          className="absolute right-[15px] w-[10px] h-[10px] bg-[#e8a038] transition-all duration-300 ease-out z-10 shadow-[0_0_12px_#e8a038]"
+          className="absolute right-[17px] w-[10px] h-[10px] bg-[#e8a038] transition-all duration-300 ease-out z-10 shadow-[0_0_12px_#e8a038]"
           style={{
             top: `${markerTop}px`,
             clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)',
@@ -73,22 +73,22 @@ export function WorldMapNav({ activeSection, onSelectSection }: WorldMapNavProps
         />
 
         {/* Section nodes */}
-        <div className="flex flex-col gap-3 relative z-20">
+        <div className="flex flex-col gap-3.5 relative z-20">
           {WORLD_SECTIONS.map((sec) => {
             const isActive = activeSection === sec.id;
             return (
               <button
                 key={sec.id}
                 onClick={() => onSelectSection(sec.id)}
-                className="group flex items-center gap-3 py-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#e07a3f] rounded-lg transition-all"
-                title={`${sec.shortLabel}: ${sec.label}`}
+                className="group relative w-7 h-7 flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#e07a3f] rounded-full transition-all pointer-events-auto"
+                aria-label={`${sec.shortLabel}: ${sec.label}`}
               >
-                {/* Floating label on hover or active */}
+                {/* Floating label ONLY on hover/focus, outside button hitbox so it never blocks UI */}
                 <span
-                  className={`font-mono text-xs px-2.5 py-1 rounded-md border transition-all duration-200 whitespace-nowrap shadow-md ${
+                  className={`pointer-events-none absolute right-full mr-2.5 font-mono text-xs px-2.5 py-1 rounded-md border transition-all duration-200 whitespace-nowrap shadow-lg opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 group-focus-visible:opacity-100 group-focus-visible:translate-x-0 ${
                     isActive
-                      ? 'opacity-100 translate-x-0 bg-[#261910] text-[#e8a038] border-[#e07a3f]/60 font-semibold'
-                      : 'opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 bg-[#1c120b] text-[#bda89b] border-[#e07a3f]/20'
+                      ? 'bg-[#261910]/95 text-[#e8a038] border-[#e07a3f]/60 font-semibold'
+                      : 'bg-[#1c120b]/95 text-[#bda89b] border-[#e07a3f]/25'
                   }`}
                 >
                   <span className="text-[#e07a3f] mr-1.5">{sec.number}</span>
