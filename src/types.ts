@@ -137,6 +137,27 @@ export interface FeaturedCreativeProject {
   }[];
 }
 
+export interface ResearchResourceItem {
+  id: string;
+  titulo: string;
+  categoria: 'investigacion' | 'tutorial' | 'descarga' | 'apuntes';
+  fecha?: string;
+  descripcion: string;
+  tags?: string[];
+  pdfUrl?: string;
+  video?: string;
+  videos?: { titulo?: string; src: string }[];
+  linkDescarga?: string;
+  linkExterno?: string;
+  visible?: boolean;
+}
+
+export interface ResourcesArchiveConfig {
+  titulo?: string;
+  descripcion?: string;
+  items: ResearchResourceItem[];
+}
+
 export interface PortfolioConfig {
   hero: {
     tagAvailability: string;
@@ -187,5 +208,6 @@ export interface PortfolioConfig {
     githubUsername: string;
   };
   historialActualizaciones: HistorialUpdate[];
+  archivoRecursos?: ResourcesArchiveConfig;
   footer: string;
 }

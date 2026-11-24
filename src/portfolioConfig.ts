@@ -13,6 +13,7 @@ import { PortfolioConfig } from './types';
    4. MUNDO 03 - MODELADO 3D Y RENDERS (Línea ~190): Galería carrusel 3D y plataformas.
    5. MUNDO 04 - INVENTARIO DE HABILIDADES (Línea ~290): (Sin GDScript, JS ni Python).
    6. MUNDO 05 - GUARDAR PARTIDA E HISTORIAL (Línea ~340): Contacto, QR y bitácora.
+   7. ARCHIVO ANEXO (BOTÓN DISCRETO EN FOOTER): Investigaciones, tutoriales, PDFs y descargas.
    ==================================================================================== */
 
 export const PORTFOLIO_CONFIG: PortfolioConfig = {
@@ -851,6 +852,20 @@ public class GameManager : MonoBehaviourPunCallbacks
   // NUEVA SECCIÓN: Registro de guardado / Historial de actualizaciones (Changelog de parches)
   historialActualizaciones: [
     {
+      version: "v1.6",
+      fecha: "Noviembre 2026",
+      titulo: "Anexo de Investigaciones & Tutoriales: Mocap Facial",
+      descripcion: "Agregué un espacio aparte al pie de la página para subir investigaciones, tutoriales y descargas sin interrumpir el portafolio. Lo estrené con mi guía de tracking facial en Blender (ARKit / LiveLinkFace / MeowFace), incluyendo PDF, video explicativo y archivos de apoyo.",
+      tipo: "nuevo"
+    },
+    {
+      version: "v1.5",
+      fecha: "Noviembre 2026",
+      titulo: "Ajustes de Navegación, Contexto VR en Enemy AI y Pulido General",
+      descripcion: "Corregí las etiquetas flotantes del mapa lateral para que no tapen botones al navegar, actualicé el proyecto de Enemy AI indicando su desarrollo para VR, limpié enlaces en desuso de Modelado 3D y dejé la ruta del CV lista para GitHub Pages.",
+      tipo: "mejora"
+    },
+    {
       version: "v1.4",
       fecha: "Noviembre 2026",
       titulo: "Sistema de IA con NavMesh, Demos en Video y Código en Vivo",
@@ -879,6 +894,95 @@ public class GameManager : MonoBehaviourPunCallbacks
       tipo: "mejora"
     }
   ],
+
+  /* ==================================================================================
+     7. ARCHIVO ANEXO — INVESTIGACIONES, TUTORIALES, PDFs Y DESCARGAS
+     Este apartado NO aparece como un "Mundo" en el portafolio; se abre únicamente
+     desde un botón discreto al final del pie de página (footer) como ventana emergente.
+
+     📘 GUÍA RÁPIDA PARA AGREGAR TUS ARCHIVOS AQUÍ:
+     1) ARCHIVOS LOCALES (PDF, ZIP, UnityPackage, etc.):
+        - Guarda el archivo dentro de la carpeta: public/Archivosvarios/
+        - Escríbelo con "./" al inicio, por ejemplo: "./Archivosvarios/mi-investigacion.pdf"
+          (El "./" es obligatorio para que funcione bien en GitHub Pages).
+
+     2) VIDEOS LOCALES O YOUTUBE:
+        - Si es un video tuyo (.mp4 / .webm): guárdalo en public/Videos/ y usa "./Videos/mi-tutorial.mp4"
+        - Si es un video de YouTube: pega la URL completa o solo el ID (ej: "https://youtu.be/dQw4w9WgXcQ")
+
+     3) LINKS DE DESCARGA O REFERENCIAS EXTERNAS:
+        - Puedes usar Google Drive, GitHub Releases, itch.io, Notion o un .zip en "./Archivosvarios/archivo.zip"
+
+     4) CÓMO ACTIVAR O APAGAR UN ELEMENTO:
+        - Copia cualquiera de los bloques de ejemplo de abajo dentro de `items: [ ... ]`
+        - Quita las barras "//" del inicio de las líneas.
+        - Si quieres ocultarlo temporalmente sin borrarlo, cambia `visible: true` a `visible: false`.
+     ================================================================================== */
+  archivoRecursos: {
+    titulo: "Investigaciones, Tutoriales & Recursos",
+    descripcion: "Anexo técnico aparte del portafolio principal con documentos PDF, guías en video y material de descarga.",
+    items: [
+      {
+        id: "MocapFacial",
+        categoria: 'investigacion',
+        fecha: "Noviembre 2026",
+        titulo: "Investigación Mocap / Tracking Facial",
+        descripcion: "Investigación sobre mocap facial para clase: integración en Blender con LiveLinkFace (Iphone/Ipad app) o MeowFace (APK android), Add-on Blender LiveLinkFace, descargando extension para toma de vrm para Viverse, para android instalar solo MewFace en android y el add-on arkit y para iphone/ipad instalar LiveLinkFace y add-on blender_livelinkface + arkit..",
+        tags: ["Blender"],
+        pdfUrl: "./ArchivosInvesti/ARKit Mocap StudioGuía de uso.pdf",
+        //linkExterno: "https://nickfisher.gumroad.com/l/tvzndw",
+        video: "./ArchivosInvesti/TutorialArkit-LiveLinkFace.mp4", // Pon aquí el nombre completo del .mp4 cuando lo subas
+        linkDescarga: "./ArchivosInvesti/ArchivosNecesarios.rar",
+        // Puedes sumar un video, varios videos o un link de descarga EN ESTE MISMO BLOQUE (quita las //):
+        // video: "./Videos/mi-tutorial.mp4", // o pega un link de YouTube
+        // videos: [
+        //   { titulo: "Parte 1 · LiveLinkServer", src: "./Videos/parte1.mp4" },
+        //   { titulo: "Parte 2 · MeowFace", src: "https://youtu.be/TU_ID" },
+        // ],
+        // linkDescarga: "./ArchivosInvesti/archivo.zip",
+        visible: true,
+      },
+      // --- EJEMPLO 1: INVESTIGACIÓN CON PDF Y ENLACE DE REFERENCIA ---
+      // {
+      //   id: "inv-01",
+      //   categoria: "investigacion", // Opciones: "investigacion" | "tutorial" | "descarga" | "apuntes"
+      //   fecha: "Noviembre 2026",
+      //   titulo: "Investigación sobre Optimización en VR para Unity",
+      //   descripcion: "Documento con pruebas de draw calls, bakeo de luces y manejo de UI diegética en visores VR.",
+      //   tags: ["Unity", "VR", "Investigación"],
+      //   pdfUrl: "./Archivosvarios/investigacion-vr.pdf", // Archivo guardado en public/Archivosvarios/
+      //   linkExterno: "https://github.com/KenaiiChikito",   // Opcional: enlace a repo, Notion o artículo
+      //   visible: true,
+      // },
+
+      // --- EJEMPLO 2: TUTORIAL CON VIDEO (MP4 LOCAL O YOUTUBE) + LINK DE DESCARGA ---
+      // {
+      //   id: "tut-01",
+      //   categoria: "tutorial",
+      //   fecha: "Noviembre 2026",
+      //   titulo: "Cómo configurar un Cono de Visión con Raycast en Unity",
+      //   descripcion: "Video paso a paso explicando ángulos de detección, Gizmos en escena y memoria de última posición.",
+      //   tags: ["C#", "Unity", "Tutorial"],
+      //   video: "./Videos/mi-tutorial.mp4", // O pega aquí un link/ID de YouTube
+      //   linkDescarga: "./Archivosvarios/EnemyAI_Script.zip", // Opcional: link directo o archivo en public/Archivosvarios/
+      //   visible: true,
+      // },
+
+      // --- EJEMPLO 3: PACK DESCARGABLE / APUNTES (PDF + VIDEO + DESCARGA) ---
+      // {
+      //   id: "rec-01",
+      //   categoria: "descarga",
+      //   fecha: "Noviembre 2026",
+      //   titulo: "Base de Props Hard-Surface para Prototipos",
+      //   descripcion: "Paquete de modelos FBX exportados desde Blender listos para pruebas rápidas en Unity.",
+      //   tags: ["Blender", "Hard-Surface", "FBX"],
+      //   pdfUrl: "./Archivosvarios/guia-exportacion.pdf", // Opcional
+      //   video: "",                                       // Opcional
+      //   linkDescarga: "https://github.com/KenaiiChikito",
+      //   visible: true,
+      // },
+    ],
+  },
 
   // Texto del pie de página
   footer: `Portafolio Game Developer & 3D Artist · Edición Otoño © ${new Date().getFullYear()} · Todos los derechos reservados.`

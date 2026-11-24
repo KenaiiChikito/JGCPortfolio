@@ -13,12 +13,15 @@ import { World05SaveGame } from './components/World05SaveGame';
 import { VideoModal } from './components/VideoModal';
 import { AchievementToast } from './components/AchievementToast';
 import { SecretQrModal } from './components/SecretQrModal';
+import { ResourcesArchiveModal } from './components/ResourcesArchiveModal';
+import { BookOpen } from 'lucide-react';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('inicio');
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [showAdminQrModal, setShowAdminQrModal] = useState(false);
+  const [showResourcesModal, setShowResourcesModal] = useState(false);
   const [footerClicks, setFooterClicks] = useState(0);
 
   // Global listener for secret Admin shortcuts (Ctrl+Shift+Q, Ctrl+Alt+A, Ctrl+Q) and URL triggers
@@ -44,6 +47,11 @@ export default function App() {
       window.location.search.includes('admin')
     ) {
       setShowAdminQrModal(true);
+    } else if (
+      window.location.hash === '#recursos' ||
+      window.location.hash === '#tutoriales'
+    ) {
+      setShowResourcesModal(true);
     }
 
     window.addEventListener('keydown', handleKeyDown);
@@ -170,12 +178,23 @@ export default function App() {
           >
             {PORTFOLIO_CONFIG.footer}
           </span>
-          <button
-            onClick={() => scrollTo('inicio')}
-            className="text-[#e8a038] hover:text-[#faede5] transition-colors"
-          >
-            ↑ VOLVER AL INICIO
-          </button>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <button
+              onClick={() => setShowResourcesModal(true)}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#1c120b] hover:bg-[#261910] border border-[rgba(224,122,63,0.18)] hover:border-[#e8a038]/50 text-[#7f6a5e] hover:text-[#e8a038] transition-colors"
+              title="Abrir anexo de investigaciones, tutoriales y PDFs"
+            >
+              <BookOpen className="w-3.5 h-3.5" />
+              <span>Archivo · Tutoriales & PDFs</span>
+            </button>
+
+            <button
+              onClick={() => scrollTo('inicio')}
+              className="text-[#e8a038] hover:text-[#faede5] transition-colors"
+            >
+              ↑ VOLVER AL INICIO
+            </button>
+          </div>
         </div>
       </footer>
 
@@ -195,6 +214,13 @@ export default function App() {
         isOpen={showAdminQrModal}
         onClose={() => setShowAdminQrModal(false)}
         defaultUrl={PORTFOLIO_CONFIG.qrUrl}
+      />
+
+      {/* Discrete Research, Tutorials & Downloads Modal (Opened from Footer) */}
+      <ResourcesArchiveModal
+        isOpen={showResourcesModal}
+        onClose={() => setShowResourcesModal(false)}
+        config={PORTFOLIO_CONFIG.archivoRecursos}
       />
     </div>
   );
