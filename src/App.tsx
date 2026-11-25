@@ -169,7 +169,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="relative z-10 border-t border-[rgba(224,122,63,0.2)] bg-[#0d0704] py-8 text-center text-xs font-mono text-[#7f6a5e]">
+      <footer className="relative z-10 border-t border-[rgba(224,122,63,0.2)] bg-[#0d0704] pt-8 pb-24 md:py-8 text-center text-xs font-mono text-[#7f6a5e]">
         <div className="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <span
             onClick={handleFooterSecretClick}
